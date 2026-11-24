@@ -1,0 +1,2845 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farhan School Furniture — Quality Classroom & Educational Furniture</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              navy: '#0F172A',
+              blue: '#1D4ED8',
+              blueDark: '#1E40AF',
+              amber: '#F59E0B',
+              amberDark: '#D97706',
+              surface: '#F8FAFC',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* ==========================================================================
+       CUSTOM STYLES & ANIMATIONS (WHITE THEME, CLEAN CONTRAST, SMOOTH MOTION)
+       ========================================================================== */
+    body {
+      background-color: #FFFFFF;
+      color: #0F172A;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* View Transition Animation */
+    .page-view {
+      display: none;
+      animation: fadeSlideIn 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .page-view.active {
+      display: block;
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Scroll-Reveal Animation Classes */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Product Card Hover Lift */
+    .product-card {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.1), 0 8px 16px -6px rgba(29, 78, 216, 0.08);
+      border-color: #BFDBFE;
+    }
+    .product-card img {
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Cart Badge Bounce */
+    @keyframes badgeBounce {
+      0%, 100% { transform: scale(1); }
+      35% { transform: scale(1.38); }
+      70% { transform: scale(0.9); }
+    }
+    .badge-bounce {
+      animation: badgeBounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Slide-over Cart Drawer */
+    .drawer-backdrop {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .drawer-panel {
+      transform: translateX(100%);
+      transition: transform 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .drawer-backdrop.open .drawer-panel {
+      transform: translateX(0);
+    }
+
+    /* Modal Backdrop & Dialog */
+    .modal-backdrop {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-box {
+      transform: scale(0.94) translateY(12px);
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .modal-backdrop.open .modal-box {
+      transform: scale(1) translateY(0);
+    }
+
+    /* Animated SVG Checkmark Tick for Order Confirmation */
+    .checkmark-circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      stroke-width: 3;
+      stroke-miterlimit: 10;
+      stroke: #16A34A;
+      fill: none;
+      animation: strokeCircle 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+    .checkmark-svg {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      display: block;
+      stroke-width: 3;
+      stroke: #FFFFFF;
+      stroke-miterlimit: 10;
+      margin: 0 auto;
+      box-shadow: inset 0px 0px 0px #16A34A;
+      animation: fillCircle 0.4s ease-in-out 0.4s forwards, scaleCheck 0.3s ease-in-out 0.85s both;
+    }
+    .checkmark-check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      stroke: #FFFFFF;
+      stroke-width: 3.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      animation: strokeCheck 0.35s cubic-bezier(0.65, 0, 0.45, 1) 0.72s forwards;
+    }
+    @keyframes strokeCircle {
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes strokeCheck {
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes fillCircle {
+      100% { box-shadow: inset 0px 0px 0px 50px #16A34A; }
+    }
+    @keyframes scaleCheck {
+      0%, 100% { transform: none; }
+      50% { transform: scale3d(1.1, 1.1, 1); }
+    }
+
+    /* Stealth Copyright Line: Completely indistinguishable from normal text */
+    .stealth-copyright {
+      cursor: default;
+      user-select: none;
+      -webkit-user-select: none;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F8FAFC;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900 antialiased flex flex-col min-h-screen">
+
+  <!-- ========================================================================
+       TOP ANNOUNCEMENT BAR
+       ======================================================================== -->
+  <div class="bg-slate-900 text-white text-xs sm:text-sm py-2 px-4 text-center">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+      <span class="inline-flex items-center gap-1.5 font-medium">
+        <i class="fa-solid fa-award text-amber-400"></i>
+        Direct Factory Pricing for Schools, Colleges & Academies Across Pakistan
+      </span>
+      <span class="hidden md:inline text-slate-500">|</span>
+      <a id="topBarWaLink" href="https://wa.me/923336942959" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 font-semibold transition">
+        <i class="fa-brands fa-whatsapp text-base"></i>
+        <span>Bulk Order Helpline: <span id="topBarPhoneDisplay">0333-6942959</span></span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       STICKY NAVIGATION BAR (NO VISIBLE ADMIN LINK)
+       ======================================================================== -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- Brand Logo -->
+        <a href="#home" data-route="home" class="nav-route flex items-center gap-3 group focus:outline-none">
+          <div id="brandLogoContainer" class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-blue-700 text-white flex items-center justify-center shadow-md shadow-blue-700/20 overflow-hidden transition-transform duration-300 group-hover:scale-105">
+            <i class="fa-solid fa-graduation-cap text-lg sm:text-xl"></i>
+          </div>
+          <div>
+            <span id="brandTitleText" class="block font-display font-extrabold text-lg sm:text-xl tracking-tight text-slate-900 leading-none">
+              Farhan School Furniture
+            </span>
+            <span class="block text-[11px] font-medium text-slate-500 tracking-wide mt-0.5">
+              Built for Modern Classrooms
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Primary Navigation">
+          <a href="#home" data-route="home" class="nav-route nav-link px-4 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-blue-700 hover:bg-blue-50/70 transition">Home</a>
+          <a href="#products" data-route="products" class="nav-route nav-link px-4 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-blue-700 hover:bg-blue-50/70 transition">Products</a>
+          <a href="#about" data-route="about" class="nav-route nav-link px-4 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-blue-700 hover:bg-blue-50/70 transition">About</a>
+          <a href="#contact" data-route="contact" class="nav-route nav-link px-4 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-blue-700 hover:bg-blue-50/70 transition">Contact</a>
+        </nav>
+
+        <!-- Right Actions: Cart Button & Mobile Menu Toggle -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button id="openCartBtn" type="button" class="relative inline-flex items-center gap-2 bg-slate-100 hover:bg-blue-50 text-slate-900 hover:text-blue-700 border border-slate-200/90 px-3.5 py-2.5 rounded-xl font-semibold text-sm transition shadow-xs focus:outline-none focus:ring-2 focus:ring-blue-600/30">
+            <i class="fa-solid fa-cart-shopping text-blue-700"></i>
+            <span class="hidden sm:inline">Cart</span>
+            <span id="cartBadge" class="inline-flex items-center justify-center min-w-[22px] h-[22px] px-1.5 text-xs font-bold bg-blue-700 text-white rounded-full">0</span>
+          </button>
+
+          <button id="mobileMenuBtn" type="button" aria-label="Toggle Menu" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-100 transition">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-lg">
+      <a href="#home" data-route="home" class="nav-route mobile-nav-link block px-4 py-3 rounded-xl text-base font-semibold text-slate-800 hover:bg-blue-50 hover:text-blue-700">Home</a>
+      <a href="#products" data-route="products" class="nav-route mobile-nav-link block px-4 py-3 rounded-xl text-base font-semibold text-slate-800 hover:bg-blue-50 hover:text-blue-700">Products</a>
+      <a href="#about" data-route="about" class="nav-route mobile-nav-link block px-4 py-3 rounded-xl text-base font-semibold text-slate-800 hover:bg-blue-50 hover:text-blue-700">About</a>
+      <a href="#contact" data-route="contact" class="nav-route mobile-nav-link block px-4 py-3 rounded-xl text-base font-semibold text-slate-800 hover:bg-blue-50 hover:text-blue-700">Contact</a>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MAIN CONTENT VIEWS (SPA ROUTING)
+       ======================================================================== -->
+  <main class="flex-grow">
+
+    <!-- ======================================================================
+         1. HOME VIEW
+         ====================================================================== -->
+    <section id="view-home" class="page-view active">
+      <!-- Hero Banner Section -->
+      <div class="relative overflow-hidden bg-slate-900">
+        <!-- Background Banner Image with Dark Gradient Overlay for Crisp Contrast -->
+        <img
+          id="heroBannerImg"
+          src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1800&q=80"
+          onerror="this.onerror=null;this.src='https://placehold.co/1600x700/0F172A/FFFFFF?text=Farhan+School+Furniture';"
+          alt="Modern School Classroom Furniture"
+          class="absolute inset-0 w-full h-full object-cover object-center opacity-45"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/75 to-slate-900/40"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
+          <div class="max-w-2xl">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs sm:text-sm font-semibold mb-6">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>Heavy-Duty Steel & Seasoned Wood Craftsmanship</span>
+            </div>
+
+            <h1 id="heroHeadline" class="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
+              Durable, Ergonomic Furniture Crafted for Inspiring Classrooms
+            </h1>
+
+            <p id="heroSubheadline" class="mt-5 text-base sm:text-lg text-slate-200 leading-relaxed">
+              From dual student desks and teacher lecture tables to library bookshelves and lab workstations—Farhan School Furniture equips schools with long-lasting comfort and factory-direct value.
+            </p>
+
+            <div class="mt-8 flex flex-wrap items-center gap-3.5">
+              <a href="#homeProductsSection" class="inline-flex items-center justify-center gap-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg shadow-blue-600/30 transition transform hover:-translate-y-0.5">
+                <span>Explore School Furniture</span>
+                <i class="fa-solid fa-arrow-down text-sm"></i>
+              </a>
+              <a id="heroWhatsAppBtn" href="https://wa.me/923336942959?text=Assalam-o-Alaikum%20Farhan%20School%20Furniture!%20I%20would%20like%20to%20inquire%20about%20school%20furniture." target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-600/25 transition transform hover:-translate-y-0.5">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>WhatsApp Inquiry</span>
+              </a>
+            </div>
+
+            <!-- Quick Trust Metrics -->
+            <div class="mt-10 pt-8 border-t border-white/15 grid grid-cols-3 gap-4 sm:gap-8">
+              <div>
+                <p class="font-display text-2xl sm:text-3xl font-extrabold text-white">500+</p>
+                <p class="text-xs sm:text-sm text-slate-300 mt-0.5">Schools Equipped</p>
+              </div>
+              <div>
+                <p class="font-display text-2xl sm:text-3xl font-extrabold text-amber-400">100%</p>
+                <p class="text-xs sm:text-sm text-slate-300 mt-0.5">Heavy-Gauge Frame</p>
+              </div>
+              <div>
+                <p class="font-display text-2xl sm:text-3xl font-extrabold text-white">Nationwide</p>
+                <p class="text-xs sm:text-sm text-slate-300 mt-0.5">Safe School Delivery</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured / All School Furniture Grid Below Hero -->
+      <div id="homeProductsSection" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 reveal">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-3 py-1 rounded-full">Complete Classroom Catalog</span>
+            <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">
+              School & Classroom Furniture
+            </h2>
+            <p class="text-slate-600 mt-2 max-w-2xl text-sm sm:text-base">
+              Order individual units or bulk classroom sets. Click <strong>Buy Now</strong> for instant checkout, <strong>Add to Cart</strong> for combined orders, or <strong>Chat on WhatsApp</strong> for custom sizes.
+            </p>
+          </div>
+          <a href="#products" data-route="products" class="nav-route inline-flex items-center gap-2 text-blue-700 hover:text-blue-800 font-semibold text-sm bg-blue-50 hover:bg-blue-100 px-4 py-2.5 rounded-xl transition self-start sm:self-auto">
+            <span>Search & Filter All</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Home Products Grid -->
+        <div id="homeProductsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <!-- Dynamically populated by JS -->
+        </div>
+      </div>
+
+      <!-- Why Schools Choose Us Strip -->
+      <div class="bg-slate-50 border-y border-slate-200/80 py-14">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs">
+              <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-xl mb-4">
+                <i class="fa-solid fa-hammer"></i>
+              </div>
+              <h3 class="font-display font-bold text-lg text-slate-900">Built for Daily Student Use</h3>
+              <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+                Reinforced powder-coated iron frames and scratch-resistant laminated tops withstand years of energetic classroom life.
+              </p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs">
+              <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl mb-4">
+                <i class="fa-solid fa-ruler-combined"></i>
+              </div>
+              <h3 class="font-display font-bold text-lg text-slate-900">Ergonomic Age-Wise Sizing</h3>
+              <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+                Thoughtfully proportioned heights for Montessori/Kindergarten, Primary, Secondary, and Higher Education students.
+              </p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs">
+              <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl mb-4">
+                <i class="fa-solid fa-truck-fast"></i>
+              </div>
+              <h3 class="font-display font-bold text-lg text-slate-900">Direct School Delivery & COD</h3>
+              <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+                Seamless delivery right to your school campus gate with flexible Cash on Delivery, EasyPaisa, and JazzCash payment options.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         2. PRODUCTS VIEW (REAL-TIME SEARCH & CATEGORY FILTERS)
+         ====================================================================== -->
+    <section id="view-products" class="page-view">
+      <div class="bg-slate-50 border-b border-slate-200/80 py-10 sm:py-14">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-100/80 px-3 py-1 rounded-full">Product Directory</span>
+          <h1 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">
+            Explore All School Furniture
+          </h1>
+          <p class="text-slate-600 mt-2 max-w-2xl text-sm sm:text-base">
+            Search in real time by furniture name, classroom type, material, or description.
+          </p>
+
+          <!-- Real-Time Search Bar & Category Pills -->
+          <div class="mt-6 flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between">
+            <div class="relative flex-grow max-w-2xl">
+              <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+              <input
+                id="productSearchInput"
+                type="text"
+                placeholder="Search desks, benches, chairs, whiteboards, bookshelves, lab tables..."
+                class="w-full pl-11 pr-10 py-3.5 bg-white border border-slate-300 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 shadow-xs text-sm sm:text-base"
+              />
+              <button id="clearSearchBtn" type="button" aria-label="Clear search" class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700">
+                <i class="fa-solid fa-circle-xmark"></i>
+              </button>
+            </div>
+
+            <!-- Category Filter Buttons -->
+            <div id="categoryFilterBar" class="flex flex-wrap items-center gap-2">
+              <!-- Populated dynamically from active products -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex items-center justify-between mb-6">
+          <p id="productsCountLabel" class="text-sm font-medium text-slate-600">Showing all products</p>
+        </div>
+
+        <div id="productsPageGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <!-- Dynamically populated by JS -->
+        </div>
+
+        <!-- Empty Search State -->
+        <div id="emptySearchState" class="hidden text-center py-16 bg-slate-50 rounded-2xl border border-slate-200">
+          <div class="w-16 h-16 rounded-full bg-slate-200/70 text-slate-500 flex items-center justify-center mx-auto text-2xl mb-4">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <h3 class="font-display font-bold text-xl text-slate-900">No matching furniture found</h3>
+          <p class="text-slate-600 text-sm mt-1 max-w-md mx-auto">
+            Try searching with broader terms like "Desk", "Chair", "Board", or reset your filters.
+          </p>
+          <button id="resetSearchFiltersBtn" type="button" class="mt-5 inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition">
+            Reset Search & Filters
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3. ABOUT VIEW
+         ====================================================================== -->
+    <section id="view-about" class="page-view">
+      <div class="bg-slate-50 border-b border-slate-200/80 py-12 sm:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-100/80 px-3 py-1 rounded-full">Our Heritage & Workshop</span>
+          <h1 id="aboutPageHeading" class="font-display text-3xl sm:text-5xl font-extrabold text-slate-900 mt-3">
+            About Farhan School Furniture
+          </h1>
+          <p class="text-slate-600 mt-3 max-w-2xl text-base sm:text-lg">
+            Crafting high-quality, durable, and student-friendly classroom furniture designed to support learning environments every single day.
+          </p>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div class="lg:col-span-6 reveal">
+            <div class="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200">
+              <img
+                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80"
+                onerror="this.onerror=null;this.src='https://placehold.co/800x600/1E293B/FFFFFF?text=Farhan+School+Furniture+Workshop';"
+                alt="Classroom Equipped by Farhan School Furniture"
+                class="w-full h-auto object-cover"
+              />
+              <div class="bg-slate-900 text-white p-5 sm:p-6">
+                <div class="flex items-start gap-3.5">
+                  <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center shrink-0 mt-0.5">
+                    <i class="fa-solid fa-location-dot text-lg"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs uppercase tracking-wider text-amber-400 font-bold">Workshop & Showroom Address</p>
+                    <p id="aboutShopAddress" class="font-semibold text-sm sm:text-base text-white mt-1">
+                      Sector 4-F, Plot 615 Baldia Town, Near Junglee School, Karachi
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 space-y-6 reveal">
+            <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
+              Good, High-Quality Furniture Built for Schools & Classrooms
+            </h2>
+
+            <div id="aboutMainCopy" class="space-y-4 text-slate-600 text-base leading-relaxed">
+              <p>
+                At <strong>Farhan School Furniture</strong>, we believe that a well-furnished classroom lays the foundation for focused, confident learning. Located at <strong>Sector 4-F, Plot 615 Baldia Town, Near Junglee School, Karachi</strong>, our manufacturing workshop specializes in designing and building dependable furniture tailored for schools, academies, colleges, and training institutes.
+              </p>
+              <p>
+                Every student desk, bench, teacher podium, library bookshelf, and laboratory table is engineered using heavy-gauge tubular steel, anti-rust powder coatings, and seasoned high-density laminated boards. Our focus is simple: deliver exceptional structural strength, smooth splinter-free edges, and ergonomic posture support that endures years of daily classroom use.
+              </p>
+              <p>
+                Whether you are furnishing a brand-new school campus or upgrading individual classrooms, we offer direct factory pricing, reliable delivery, and responsive support from order to installation.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/90 flex items-start gap-3">
+                <i class="fa-solid fa-circle-check text-blue-700 mt-1"></i>
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm">Heavy-Duty Construction</h4>
+                  <p class="text-xs text-slate-600 mt-0.5">Welded steel frames & commercial-grade boards.</p>
+                </div>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/90 flex items-start gap-3">
+                <i class="fa-solid fa-circle-check text-blue-700 mt-1"></i>
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm">Custom School Orders</h4>
+                  <p class="text-xs text-slate-600 mt-0.5">Sizes & colors tailored to your institution.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-3 flex flex-wrap gap-3">
+              <a href="#products" data-route="products" class="nav-route inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold px-6 py-3 rounded-xl transition shadow-sm">
+                <span>Browse Catalog</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+              <a href="#contact" data-route="contact" class="nav-route inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold px-6 py-3 rounded-xl transition">
+                <span>Visit or Contact Us</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         4. CONTACT VIEW
+         ====================================================================== -->
+    <section id="view-contact" class="page-view">
+      <div class="bg-slate-50 border-b border-slate-200/80 py-12 sm:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-100/80 px-3 py-1 rounded-full">Direct Support & Quotes</span>
+          <h1 class="font-display text-3xl sm:text-5xl font-extrabold text-slate-900 mt-3">
+            Contact Farhan School Furniture
+          </h1>
+          <p class="text-slate-600 mt-3 max-w-2xl text-base sm:text-lg">
+            Have questions about bulk school pricing, custom dimensions, or delivery? Reach us immediately on WhatsApp or send your inquiry below.
+          </p>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <!-- Left Info & One-Click WhatsApp Card -->
+          <div class="lg:col-span-5 space-y-6 reveal">
+            <div class="bg-emerald-600 text-white rounded-2xl p-7 shadow-lg shadow-emerald-600/20">
+              <div class="w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center text-2xl mb-4">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <h2 class="font-display text-2xl font-extrabold">Instant WhatsApp Chat</h2>
+              <p class="text-emerald-50 text-sm mt-2 leading-relaxed">
+                Chat directly with our sales & workshop team for instant price quotes, photos, and school delivery schedules.
+              </p>
+              <a id="contactDirectWaBtn" href="https://wa.me/923336942959" target="_blank" rel="noopener" class="mt-6 w-full inline-flex items-center justify-center gap-2.5 bg-white text-emerald-700 hover:bg-emerald-50 font-bold px-5 py-3.5 rounded-xl transition shadow-sm">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>Chat on WhatsApp (<span id="contactWaNumberText">03336942959</span>)</span>
+              </a>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 space-y-5 shadow-xs">
+              <div class="flex items-start gap-3.5">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 text-sm">Workshop & Display Address</h3>
+                  <p id="contactAddressText" class="text-slate-600 text-sm mt-1">
+                    Sector 4-F, Plot 615 Baldia Town, Near Junglee School, Karachi
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3.5">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 text-sm">Phone / EasyPaisa / JazzCash</h3>
+                  <p id="contactPhoneText" class="text-slate-600 text-sm mt-1 font-semibold">03336942959</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3.5">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 text-sm">Working Hours</h3>
+                  <p class="text-slate-600 text-sm mt-1">Monday – Saturday: 9:00 AM – 8:00 PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Inquiry Form -> Sends Formatted Details to WhatsApp -->
+          <div class="lg:col-span-7 reveal">
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+              <h2 class="font-display text-2xl font-extrabold text-slate-900">Ask Your Question on WhatsApp</h2>
+              <p class="text-slate-600 text-sm mt-1.5">
+                Fill in your details below and click submit to send your formatted inquiry directly to our WhatsApp (<span class="font-semibold text-slate-800" id="contactFormPhoneHint">03336942959</span>).
+              </p>
+
+              <form id="contactInquiryForm" class="mt-6 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label for="inqName" class="block text-sm font-semibold text-slate-800 mb-1.5">Your Full Name *</label>
+                    <input id="inqName" type="text" required placeholder="e.g., Muhammad Tariq" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm" />
+                  </div>
+                  <div>
+                    <label for="inqContact" class="block text-sm font-semibold text-slate-800 mb-1.5">Phone Number or Email *</label>
+                    <input id="inqContact" type="text" required placeholder="e.g., 0300-1234567" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm" />
+                  </div>
+                </div>
+
+                <div>
+                  <label for="inqSchool" class="block text-sm font-semibold text-slate-800 mb-1.5">School / Institution Name *</label>
+                  <input id="inqSchool" type="text" required placeholder="e.g., Al-Fajr Grammar School" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm" />
+                </div>
+
+                <div>
+                  <label for="inqMessage" class="block text-sm font-semibold text-slate-800 mb-1.5">Your Question / Furniture Requirement *</label>
+                  <textarea id="inqMessage" rows="4" required placeholder="Tell us which desks, chairs, or quantities you need and your delivery city..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm"></textarea>
+                </div>
+
+                <button type="submit" class="w-full inline-flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-md shadow-emerald-600/20 transition">
+                  <i class="fa-brands fa-whatsapp text-xl"></i>
+                  <span>Send Question Directly on WhatsApp</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         5. HIDDEN ADMIN DASHBOARD VIEW (UNLOCKED ONLY VIA TRIPLE-CLICK COPYRIGHT)
+         ====================================================================== -->
+    <section id="view-admin" class="page-view">
+      <div class="bg-slate-900 text-white py-8 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div class="flex flex-wrap items-center gap-2 mb-2">
+              <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full">
+                <i class="fa-solid fa-lock"></i>
+                <span>Authenticated Store Control Center</span>
+              </div>
+              <span id="cloudStatusBadge" class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30">
+                <i class="fa-solid fa-cloud"></i>
+                <span>Connecting to Firestore...</span>
+              </span>
+            </div>
+            <h1 class="font-display text-2xl sm:text-3xl font-extrabold">Farhan School Furniture — Admin Panel</h1>
+            <p class="text-slate-400 text-xs sm:text-sm mt-1" id="storageSyncStatusText">Project: farhan-school-f • Initializing Cloud Firestore...</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2.5">
+            <button id="syncLocalToCloudBtn" type="button" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition shadow-xs">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <span>Sync Local Data to Cloud</span>
+            </button>
+            <button id="adminExitBtn" type="button" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl border border-slate-700 transition">
+              <i class="fa-solid fa-store"></i>
+              <span>Back to Storefront</span>
+            </button>
+            <button id="adminLogoutBtn" type="button" class="inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span>Lock & Logout</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Navigation Tabs -->
+      <div class="bg-white border-b border-slate-200 sticky top-16 sm:top-20 z-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex overflow-x-auto gap-1 py-2 no-scrollbar" role="tablist">
+            <button type="button" data-admin-tab="products" class="admin-tab-btn active whitespace-nowrap px-4 py-2.5 rounded-xl text-sm font-bold bg-blue-700 text-white transition">
+              <i class="fa-solid fa-chair mr-1.5"></i>Products Manager
+            </button>
+            <button type="button" data-admin-tab="deleted" class="admin-tab-btn whitespace-nowrap px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">
+              <i class="fa-solid fa-trash-can-arrow-up mr-1.5"></i>Recently Deleted (<span id="deletedCountBadge">0</span>)
+            </button>
+            <button type="button" data-admin-tab="orders" class="admin-tab-btn whitespace-nowrap px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">
+              <i class="fa-solid fa-inbox mr-1.5"></i>Orders Inbox (<span id="ordersCountBadge">0</span>)
+            </button>
+            <button type="button" data-admin-tab="content" class="admin-tab-btn whitespace-nowrap px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">
+              <i class="fa-solid fa-pen-to-square mr-1.5"></i>Site Content & Logo
+            </button>
+            <button type="button" data-admin-tab="security" class="admin-tab-btn whitespace-nowrap px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">
+              <i class="fa-solid fa-key mr-1.5"></i>Admin Credentials
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+
+        <!-- TAB 1: PRODUCTS MANAGER -->
+        <div id="admin-tab-products" class="admin-tab-pane space-y-8">
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+            <div class="flex items-center justify-between mb-4">
+              <h2 id="productFormTitle" class="font-display text-xl font-extrabold text-slate-900">Add New School Furniture Product</h2>
+              <button id="cancelEditProductBtn" type="button" class="hidden text-xs font-bold text-slate-600 hover:text-slate-900 bg-white border border-slate-300 px-3 py-1.5 rounded-lg">
+                Cancel Edit
+              </button>
+            </div>
+
+            <form id="adminProductForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input type="hidden" id="editProductId" value="" />
+
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Product Name *</label>
+                <input id="prodNameInput" type="text" required placeholder="e.g., Dual Student Desk & Bench" class="w-full px-3.5 py-2.5 bg-white rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Price (PKR) *</label>
+                  <input id="prodPriceInput" type="number" min="1" step="1" required placeholder="e.g., 14500" class="w-full px-3.5 py-2.5 bg-white rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Category *</label>
+                  <input id="prodCategoryInput" type="text" required placeholder="e.g., Student Desks" class="w-full px-3.5 py-2.5 bg-white rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Image URL (or Upload Below)</label>
+                <input id="prodImageUrlInput" type="text" placeholder="https://example.com/desk.jpg" class="w-full px-3.5 py-2.5 bg-white rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Or Upload Image File</label>
+                <input id="prodImageFileInput" type="file" accept="image/*" class="w-full px-3 py-2 bg-white rounded-xl border border-slate-300 text-xs file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:bg-blue-50 file:text-blue-700 file:font-semibold" />
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Product Description *</label>
+                <textarea id="prodDescInput" rows="2" required placeholder="Dimensions, steel gauge, board finish, seating capacity..." class="w-full px-3.5 py-2.5 bg-white rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none"></textarea>
+              </div>
+
+              <div class="md:col-span-2 flex justify-end">
+                <button type="submit" id="saveProductBtn" class="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition shadow-sm">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>Save Product</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Active Products List -->
+          <div>
+            <h3 class="font-display text-lg font-extrabold text-slate-900 mb-4">Active Store Products (<span id="adminActiveProdCount">0</span>)</h3>
+            <div id="adminProductsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: RECENTLY DELETED PRODUCTS -->
+        <div id="admin-tab-deleted" class="admin-tab-pane hidden space-y-6">
+          <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-center gap-3 text-amber-900 text-sm">
+            <i class="fa-solid fa-circle-info text-amber-600 text-lg"></i>
+            <span>Deleted products are safely stored here. You can restore them back to your storefront anytime or permanently delete them.</span>
+          </div>
+
+          <div id="adminDeletedList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- TAB 3: ORDERS INBOX -->
+        <div id="admin-tab-orders" class="admin-tab-pane hidden space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h2 class="font-display text-xl font-extrabold text-slate-900">Customer & School Orders Inbox</h2>
+              <p class="text-slate-600 text-sm">Includes all orders submitted via Buy Now and Shopping Cart.</p>
+            </div>
+          </div>
+
+          <div id="adminOrdersList" class="space-y-4">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- TAB 4: SITE CONTENT & LOGO EDITOR -->
+        <div id="admin-tab-content" class="admin-tab-pane hidden">
+          <form id="adminContentForm" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xs">
+            <h2 class="font-display text-xl font-extrabold text-slate-900 border-b border-slate-100 pb-4">
+              Customize Branding, Banner, About & Contact Info
+            </h2>
+
+            <!-- Brand Identity -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Brand Name</label>
+                <input id="cfgBrandName" type="text" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Top Logo Image URL (Optional)</label>
+                <input id="cfgLogoUrl" type="text" placeholder="Leave blank for default graduation icon" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Or Upload Logo Image</label>
+                <input id="cfgLogoFile" type="file" accept="image/*" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs" />
+              </div>
+            </div>
+
+            <!-- Hero Section -->
+            <div class="pt-4 border-t border-slate-100 space-y-4">
+              <h3 class="font-bold text-slate-900 text-base">Home Page Hero Banner</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Hero Banner Image URL</label>
+                  <input id="cfgHeroImgUrl" type="text" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Or Upload New Banner Image</label>
+                  <input id="cfgHeroImgFile" type="file" accept="image/*" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Hero Headline</label>
+                <input id="cfgHeroHeadline" type="text" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Hero Subheadline</label>
+                <textarea id="cfgHeroSubheadline" rows="2" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm"></textarea>
+              </div>
+            </div>
+
+            <!-- Contact & About Details -->
+            <div class="pt-4 border-t border-slate-100 space-y-4">
+              <h3 class="font-bold text-slate-900 text-base">About & Contact Details</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">WhatsApp / EasyPaisa / JazzCash Number</label>
+                  <input id="cfgPhone" type="text" required placeholder="03336942959" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Shop / Workshop Address</label>
+                  <input id="cfgAddress" type="text" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">About Page Description Paragraphs</label>
+                <textarea id="cfgAboutCopy" rows="4" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm"></textarea>
+              </div>
+            </div>
+
+            <div class="flex justify-end pt-2">
+              <button type="submit" class="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-bold px-6 py-3 rounded-xl text-sm transition shadow-sm">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span>Save Site Content Changes</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- TAB 5: ADMIN CREDENTIALS CHANGER -->
+        <div id="admin-tab-security" class="admin-tab-pane hidden max-w-xl">
+          <form id="adminCredentialsForm" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-xs">
+            <div>
+              <h2 class="font-display text-xl font-extrabold text-slate-900">Change Admin Username & Password</h2>
+              <p class="text-slate-600 text-sm mt-1">
+                Verify your current username and old password before setting new login credentials.
+              </p>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Current Username *</label>
+              <input id="credCurrentUser" type="text" required autocomplete="off" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Old Password *</label>
+              <input id="credOldPass" type="password" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 space-y-4">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">New Username *</label>
+                <input id="credNewUser" type="text" required autocomplete="off" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">New Password *</label>
+                <input id="credNewPass" type="password" required minlength="4" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+            </div>
+
+            <div id="credFeedbackMsg" class="hidden text-sm font-semibold p-3 rounded-xl"></div>
+
+            <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition">
+              <i class="fa-solid fa-shield-check"></i>
+              <span>Update Admin Credentials</span>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       FOOTER WITH STEALTH TRIPLE-CLICK COPYRIGHT TRIGGER
+       ======================================================================== -->
+  <footer class="bg-slate-950 text-slate-300 border-t border-slate-800 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-10 border-b border-slate-800/80">
+        <div>
+          <div class="flex items-center gap-2.5 text-white font-display font-extrabold text-xl">
+            <i class="fa-solid fa-graduation-cap text-amber-400"></i>
+            <span id="footerBrandName">Farhan School Furniture</span>
+          </div>
+          <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+            Manufacturing durable, ergonomic desks, chairs, whiteboards, and classroom furniture for schools across Pakistan.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-3">Quick Navigation</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#home" data-route="home" class="nav-route hover:text-white transition">Home</a></li>
+            <li><a href="#products" data-route="products" class="nav-route hover:text-white transition">Products Catalog</a></li>
+            <li><a href="#about" data-route="about" class="nav-route hover:text-white transition">About Us</a></li>
+            <li><a href="#contact" data-route="contact" class="nav-route hover:text-white transition">Contact & WhatsApp</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-3">Workshop & Direct Line</h4>
+          <p id="footerAddress" class="text-sm text-slate-400 leading-relaxed">
+            Sector 4-F, Plot 615 Baldia Town, Near Junglee School, Karachi
+          </p>
+          <p class="text-sm text-emerald-400 font-semibold mt-2">
+            <i class="fa-brands fa-whatsapp mr-1.5"></i>
+            <span id="footerPhone">03336942959</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+        <!-- STEALTH COPYRIGHT TRIGGER: Plain text, cursor: default, no hover effect, no tooltip -->
+        <p id="copyrightTrigger" class="stealth-copyright">
+          © 2026 Farhan School Furniture. All rights reserved.
+        </p>
+        <p class="text-slate-500">Quality Classroom & Educational Furniture</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       SLIDE-OVER SHOPPING CART DRAWER
+       ======================================================================== -->
+  <div id="cartDrawerBackdrop" class="drawer-backdrop fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs flex justify-end">
+    <div class="drawer-panel w-full max-w-md bg-white h-full shadow-2xl flex flex-col">
+      <!-- Drawer Header -->
+      <div class="px-6 py-5 border-b border-slate-200 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <i class="fa-solid fa-cart-shopping text-blue-700 text-lg"></i>
+          <h2 class="font-display font-extrabold text-xl text-slate-900">Your School Cart</h2>
+        </div>
+        <button id="closeCartBtn" type="button" aria-label="Close cart" class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Cart Items Body -->
+      <div id="cartItemsContainer" class="flex-grow overflow-y-auto p-6 space-y-4">
+        <!-- Populated dynamically -->
+      </div>
+
+      <!-- Cart Footer -->
+      <div id="cartDrawerFooter" class="p-6 border-t border-slate-200 bg-slate-50 space-y-4">
+        <div class="flex items-center justify-between text-base">
+          <span class="font-semibold text-slate-600">Estimated Total</span>
+          <span id="cartTotalAmount" class="font-display font-extrabold text-2xl text-slate-900">PKR 0</span>
+        </div>
+        <button id="orderAllTogetherBtn" type="button" class="w-full inline-flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-blue-700/20 transition">
+          <span>Order All Together</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       CHECKOUT MODAL (FOR BOTH "BUY NOW" & "ORDER ALL TOGETHER")
+       ======================================================================== -->
+  <div id="checkoutModalBackdrop" class="modal-backdrop fixed inset-0 z-50 bg-slate-950/65 backdrop-blur-xs flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
+    <div class="modal-box bg-white w-full max-w-2xl rounded-2xl shadow-2xl border border-slate-200 overflow-hidden my-auto max-h-[92vh] flex flex-col">
+      <!-- Header -->
+      <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between shrink-0">
+        <div>
+          <h2 class="font-display font-extrabold text-lg sm:text-xl">Complete Your School Order</h2>
+          <p id="checkoutModeSubtitle" class="text-xs text-slate-300 mt-0.5">Direct Factory Order • Farhan School Furniture</p>
+        </div>
+        <button id="closeCheckoutBtn" type="button" aria-label="Close checkout" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Checkout Scrollable Form & Summary -->
+      <div id="checkoutFormContainer" class="p-5 sm:p-6 overflow-y-auto space-y-6">
+        <!-- Items Summary Box -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+          <div class="flex items-center justify-between mb-2.5">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Order Items Summary</span>
+            <span id="checkoutGrandTotal" class="font-display font-extrabold text-lg text-blue-700">PKR 0</span>
+          </div>
+          <div id="checkoutItemsList" class="space-y-2 text-sm max-h-36 overflow-y-auto pr-1">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Customer & School Address Form -->
+        <form id="checkoutOrderForm" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="chkCustomerName" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Full Name *</label>
+              <input id="chkCustomerName" type="text" required placeholder="Principal / Buyer Name" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+            </div>
+            <div>
+              <label for="chkSchoolName" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">School Name *</label>
+              <input id="chkSchoolName" type="text" required placeholder="e.g., Bright Future High School" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="chkPrimaryAddress" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Primary Address *</label>
+              <input id="chkPrimaryAddress" type="text" required placeholder="Street / Block / Area" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+            </div>
+            <div>
+              <label for="chkCity" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">City *</label>
+              <input id="chkCity" type="text" required placeholder="e.g., Karachi, Hyderabad, Lahore" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+            </div>
+          </div>
+
+          <!-- Separate Delivery Address & School Address + Convenience Note/Checkbox -->
+          <div class="p-4 rounded-xl bg-blue-50/60 border border-blue-100 space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <p class="text-xs font-semibold text-blue-900">
+                <i class="fa-solid fa-circle-info text-blue-600 mr-1"></i>
+                Note: Both delivery address and school address can be the same.
+              </p>
+              <label class="inline-flex items-center gap-2 text-xs font-bold text-blue-800 cursor-pointer select-none">
+                <input id="sameAddressCheckbox" type="checkbox" class="rounded border-blue-300 text-blue-700 focus:ring-blue-600" />
+                <span>Copy Delivery to School Address</span>
+              </label>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label for="chkDeliveryAddress" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Delivery Address *</label>
+                <input id="chkDeliveryAddress" type="text" required placeholder="Exact drop-off / gate address" class="w-full px-3.5 py-2.5 bg-white rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+              <div>
+                <label for="chkSchoolAddress" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">School Address *</label>
+                <input id="chkSchoolAddress" type="text" required placeholder="School campus location" class="w-full px-3.5 py-2.5 bg-white rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Delivery / Payment Method Section Below Address & City -->
+          <div class="pt-1 space-y-3">
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">
+              Select Delivery / Payment Method *
+            </label>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <!-- Option 1: COD -->
+              <label class="payment-option-card cursor-pointer border-2 border-blue-600 bg-blue-50/40 rounded-xl p-3.5 flex items-start gap-2.5 transition">
+                <input type="radio" name="paymentMethod" value="COD (Cash on Delivery)" checked class="mt-1 text-blue-700 focus:ring-blue-600" />
+                <div>
+                  <span class="block font-bold text-sm text-slate-900">COD</span>
+                  <span class="block text-xs text-slate-500">Cash on Delivery</span>
+                </div>
+              </label>
+
+              <!-- Option 2: EasyPaisa -->
+              <label class="payment-option-card cursor-pointer border-2 border-slate-200 hover:border-emerald-400 rounded-xl p-3.5 flex items-start gap-2.5 transition">
+                <input type="radio" name="paymentMethod" value="EasyPaisa (03336942959)" class="mt-1 text-emerald-600 focus:ring-emerald-600" />
+                <div>
+                  <span class="block font-bold text-sm text-slate-900">EasyPaisa</span>
+                  <span class="block text-xs font-semibold text-emerald-700 payment-num-display">03336942959</span>
+                </div>
+              </label>
+
+              <!-- Option 3: JazzCash -->
+              <label class="payment-option-card cursor-pointer border-2 border-slate-200 hover:border-rose-400 rounded-xl p-3.5 flex items-start gap-2.5 transition">
+                <input type="radio" name="paymentMethod" value="JazzCash (03336942959)" class="mt-1 text-rose-600 focus:ring-rose-600" />
+                <div>
+                  <span class="block font-bold text-sm text-slate-900">JazzCash</span>
+                  <span class="block text-xs font-semibold text-rose-700 payment-num-display">03336942959</span>
+                </div>
+              </label>
+            </div>
+
+            <!-- Mobile Wallet Account Details Box (Visible when EasyPaisa or JazzCash selected) -->
+            <div id="walletPaymentBox" class="hidden p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 flex flex-wrap items-center justify-between gap-3">
+              <div class="text-xs sm:text-sm text-emerald-950">
+                <span class="font-bold" id="walletProviderLabel">EasyPaisa</span> Account Number:
+                <span class="font-mono font-extrabold text-base ml-1" id="walletAccountNum">03336942959</span>
+              </div>
+              <button type="button" id="copyWalletNumBtn" class="inline-flex items-center gap-1.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition">
+                <i class="fa-regular fa-copy"></i>
+                <span>Copy Number</span>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-extrabold py-3.5 px-6 rounded-xl shadow-lg shadow-blue-700/25 transition text-base">
+            <i class="fa-solid fa-check-circle"></i>
+            <span>Confirm Order</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Order Confirmation Success Screen with Animated SVG Tick -->
+      <div id="orderConfirmedContainer" class="hidden p-8 sm:p-10 text-center space-y-5 overflow-y-auto">
+        <div class="pt-2">
+          <svg class="checkmark-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" />
+            <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+          </svg>
+        </div>
+
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider">Order Confirmed</span>
+          <h3 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
+            Thank You! Your Order is Received
+          </h3>
+          <p class="text-slate-600 text-sm mt-1.5 max-w-md mx-auto">
+            Our workshop team has received your school furniture order and will coordinate delivery shortly.
+          </p>
+        </div>
+
+        <div id="orderReceiptSummary" class="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 text-left text-sm space-y-2 max-w-lg mx-auto">
+          <!-- Populated dynamically -->
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+          <button id="doneOrderBtn" type="button" class="inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition">
+            <span>Continue Shopping</span>
+          </button>
+          <a id="receiptWhatsAppBtn" href="https://wa.me/923336942959" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-3 rounded-xl text-sm transition">
+            <i class="fa-brands fa-whatsapp text-base"></i>
+            <span>Share Receipt on WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       STEALTH ADMIN LOGIN MODAL (TRIGGERED ONLY BY 3 CLICKS ON COPYRIGHT)
+       ======================================================================== -->
+  <div id="adminLoginBackdrop" class="modal-backdrop fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="modal-box bg-white w-full max-w-md rounded-2xl shadow-2xl border border-slate-200 p-6 sm:p-7">
+      <div class="flex items-center justify-between mb-5">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-xl bg-slate-900 text-amber-400 flex items-center justify-center">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div>
+            <h2 class="font-display font-extrabold text-lg text-slate-900">Administrative Access</h2>
+            <p class="text-xs text-slate-500">Authorized Store Personnel Only</p>
+          </div>
+        </div>
+        <button id="closeAdminLoginBtn" type="button" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="adminLoginForm" class="space-y-4">
+        <div>
+          <label for="adminUserInput" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Username</label>
+          <input id="adminUserInput" type="text" required autocomplete="off" placeholder="Enter username" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+        </div>
+        <div>
+          <label for="adminPassInput" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Password</label>
+          <input id="adminPassInput" type="password" required placeholder="Enter password" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+        </div>
+
+        <p id="adminLoginError" class="hidden text-xs font-bold text-rose-600 bg-rose-50 border border-rose-200 px-3 py-2 rounded-lg">
+          Invalid username or password. Please try again.
+        </p>
+
+        <button type="submit" class="w-full bg-slate-900 hover:bg-blue-700 text-white font-bold py-3 rounded-xl text-sm transition">
+          Unlock Admin Dashboard
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       TOAST NOTIFICATION CONTAINER
+       ======================================================================== -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2.5 pointer-events-none"></div>
+
+  <!-- ========================================================================
+       APPLICATION LOGIC (GOOGLE CLOUD FIRESTORE + LOCALSTORAGE FALLBACK)
+       ======================================================================== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      doc,
+      getDoc,
+      getDocs,
+      setDoc,
+      deleteDoc,
+      onSnapshot
+    } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+    /* ==========================================================================
+       1. FIREBASE CLOUD FIRESTORE CONFIGURATION (PROJECT: farhan-school-f)
+       ========================================================================== */
+    const firebaseConfig = {
+      apiKey: "AIzaSyAhVz7LNBDnE6w2uLoWGzLXNqvZmWJ_EGk",
+      authDomain: "farhan-school-f.firebaseapp.com",
+      projectId: "farhan-school-f",
+      storageBucket: "farhan-school-f.firebasestorage.app",
+      messagingSenderId: "60267016101",
+      appId: "1:60267016101:web:7c83c58c50015bd3c1824c"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let isCloudConnected = false;
+
+    /* ==========================================================================
+       2. DEFAULT SEED DATA (PRE-LOADED ON FIRST RUN)
+       ========================================================================== */
+    const DEFAULT_PRODUCTS = [
+      {
+        id: "prod-dual-desk-01",
+        name: "Dual Student Desk & Bench",
+        price: 14500,
+        category: "Student Desks",
+        image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=900&q=80",
+        description: "Heavy-duty 16-gauge powder-coated steel frame with high-density laminated wooden top, under-desk book shelf, and attached 2-seater ergonomic bench."
+      },
+      {
+        id: "prod-teacher-desk-02",
+        name: "Teacher's Lecture Desk",
+        price: 18500,
+        category: "Teacher Furniture",
+        image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80",
+        description: "Spacious 4x2 ft executive classroom teacher table featuring lockable side drawers, modesty front panel, and scratch-resistant oak finish."
+      },
+      {
+        id: "prod-whiteboard-03",
+        name: "Classroom Magnetic Whiteboard & Cabinet",
+        price: 12000,
+        category: "Boards & Storage",
+        image: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=900&q=80",
+        description: "8x4 ft non-glare magnetic porcelain writing board paired with an aluminum marker tray and lockable classroom supply cabinet."
+      },
+      {
+        id: "prod-kg-chairs-04",
+        name: "Kindergarten Stackable Chairs Set (Pack of 4)",
+        price: 9600,
+        category: "Kindergarten",
+        image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80",
+        description: "Child-safe rounded-edge polypropylene seats with reinforced tubular steel legs. Lightweight, vibrant, and space-saving stackable design."
+      },
+      {
+        id: "prod-bookshelf-05",
+        name: "Wooden Library Bookshelf",
+        price: 22000,
+        category: "Library & Labs",
+        image: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=900&q=80",
+        description: "6-tier heavy-capacity school library shelving unit engineered to hold hundreds of textbooks and reference volumes without sagging."
+      },
+      {
+        id: "prod-science-lab-06",
+        name: "Science Lab Workstation Table",
+        price: 34000,
+        category: "Library & Labs",
+        image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=900&q=80",
+        description: "Chemical-resistant phenolic top laboratory table for 4 students with reagent rack, apparatus storage cabinets, and heavy steel undercarriage."
+      }
+    ];
+
+    const DEFAULT_SITE_CONFIG = {
+      brandName: "Farhan School Furniture",
+      logoUrl: "",
+      heroImage: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1800&q=80",
+      heroHeadline: "Durable, Ergonomic Furniture Crafted for Inspiring Classrooms",
+      heroSubheadline: "From dual student desks and teacher lecture tables to library bookshelves and lab workstations—Farhan School Furniture equips schools with long-lasting comfort and factory-direct value.",
+      phone: "03336942959",
+      address: "Sector 4-F, Plot 615 Baldia Town, Near Junglee School, Karachi",
+      aboutCopy: "At Farhan School Furniture, we believe that a well-furnished classroom lays the foundation for focused, confident learning. Located at Sector 4-F, Plot 615 Baldia Town, Near Junglee School, Karachi, our manufacturing workshop specializes in designing and building dependable furniture tailored for schools, academies, colleges, and training institutes.\n\nEvery student desk, bench, teacher podium, library bookshelf, and laboratory table is engineered using heavy-gauge tubular steel, anti-rust powder coatings, and seasoned high-density laminated boards. Our focus is simple: deliver exceptional structural strength, smooth splinter-free edges, and ergonomic posture support that endures years of daily classroom use.\n\nWhether you are furnishing a brand-new school campus or upgrading individual classrooms, we offer direct factory pricing, reliable delivery, and responsive support from order to installation."
+    };
+
+    const DEFAULT_ADMIN_CREDS = {
+      username: "admin",
+      password: "admin123"
+    };
+
+    /* ==========================================================================
+       3. APPLICATION STATE & STORAGE KEYS
+       ========================================================================== */
+    const LS_KEYS = {
+      PRODUCTS: "fsf_products_v1",
+      DELETED: "fsf_deleted_v1",
+      ORDERS: "fsf_orders_v1",
+      CONFIG: "fsf_config_v1",
+      CREDS: "fsf_creds_v1",
+      CART: "fsf_cart_v1"
+    };
+
+    let state = {
+      products: [],
+      deletedProducts: [],
+      orders: [],
+      config: { ...DEFAULT_SITE_CONFIG },
+      creds: { ...DEFAULT_ADMIN_CREDS },
+      cart: [],
+      activeCategory: "All",
+      searchQuery: "",
+      isAdminAuthenticated: false,
+      checkoutItems: [],
+      checkoutMode: "cart" // "single" | "cart"
+    };
+
+    /* ==========================================================================
+       4. PERSISTENCE LAYER (FIRESTORE COLLECTIONS + LOCALSTORAGE FALLBACK)
+       --------------------------------------------------------------------------
+       Collections & Documents:
+       - `products/{productId}`
+       - `deleted_products/{productId}`
+       - `orders/{orderId}`
+       - `site_settings/main`
+       - `admin_config/credentials`
+       ========================================================================== */
+    function loadFromLocalStorage() {
+      try {
+        const savedProducts = localStorage.getItem(LS_KEYS.PRODUCTS);
+        state.products = savedProducts ? JSON.parse(savedProducts) : [...DEFAULT_PRODUCTS];
+
+        const savedDeleted = localStorage.getItem(LS_KEYS.DELETED);
+        state.deletedProducts = savedDeleted ? JSON.parse(savedDeleted) : [];
+
+        const savedOrders = localStorage.getItem(LS_KEYS.ORDERS);
+        state.orders = savedOrders ? JSON.parse(savedOrders) : [];
+
+        const savedConfig = localStorage.getItem(LS_KEYS.CONFIG);
+        state.config = savedConfig ? { ...DEFAULT_SITE_CONFIG, ...JSON.parse(savedConfig) } : { ...DEFAULT_SITE_CONFIG };
+
+        const savedCreds = localStorage.getItem(LS_KEYS.CREDS);
+        state.creds = savedCreds ? { ...DEFAULT_ADMIN_CREDS, ...JSON.parse(savedCreds) } : { ...DEFAULT_ADMIN_CREDS };
+
+        const savedCart = localStorage.getItem(LS_KEYS.CART);
+        state.cart = savedCart ? JSON.parse(savedCart) : [];
+      } catch (err) {
+        console.error("LocalStorage read error:", err);
+        state.products = [...DEFAULT_PRODUCTS];
+      }
+    }
+
+    function mirrorAllToLocalStorage() {
+      try {
+        localStorage.setItem(LS_KEYS.PRODUCTS, JSON.stringify(state.products));
+        localStorage.setItem(LS_KEYS.DELETED, JSON.stringify(state.deletedProducts));
+        localStorage.setItem(LS_KEYS.ORDERS, JSON.stringify(state.orders));
+        localStorage.setItem(LS_KEYS.CONFIG, JSON.stringify(state.config));
+        localStorage.setItem(LS_KEYS.CREDS, JSON.stringify(state.creds));
+      } catch (err) {
+        console.warn("LocalStorage mirror warning:", err);
+      }
+    }
+
+    function saveCartToLocal() {
+      try {
+        localStorage.setItem(LS_KEYS.CART, JSON.stringify(state.cart));
+      } catch (e) {
+        console.warn("Cart local save failed", e);
+      }
+    }
+
+    function updateCloudConnectionUI(connected, detailText = "") {
+      isCloudConnected = connected;
+      const badge = document.getElementById("cloudStatusBadge");
+      const statusText = document.getElementById("storageSyncStatusText");
+      if (!badge || !statusText) return;
+
+      if (connected) {
+        badge.className = "inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30";
+        badge.innerHTML = `<i class="fa-solid fa-cloud-check"></i><span>Firestore Cloud Connected</span>`;
+        statusText.textContent = detailText || "Project: farhan-school-f • Live Multi-Device Cloud Sync Active";
+      } else {
+        badge.className = "inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-400/30";
+        badge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i><span>Offline Fallback</span>`;
+        statusText.textContent = detailText || "Cloud unreachable or rules restricted — running on LocalStorage fallback";
+      }
+    }
+
+    // Individual Firestore Write Helpers (with localStorage mirror)
+    async function saveProductToCloud(product) {
+      mirrorAllToLocalStorage();
+      await setDoc(doc(db, "products", product.id), {
+        ...product,
+        updatedAt: new Date().toISOString()
+      });
+    }
+
+    async function moveProductToDeletedCloud(product) {
+      mirrorAllToLocalStorage();
+      await setDoc(doc(db, "deleted_products", product.id), {
+        ...product,
+        deletedAt: product.deletedAt || new Date().toISOString()
+      });
+      await deleteDoc(doc(db, "products", product.id));
+    }
+
+    async function restoreProductFromDeletedCloud(product) {
+      mirrorAllToLocalStorage();
+      const cleanProd = { ...product };
+      delete cleanProd.deletedAt;
+      await setDoc(doc(db, "products", cleanProd.id), {
+        ...cleanProd,
+        updatedAt: new Date().toISOString()
+      });
+      await deleteDoc(doc(db, "deleted_products", cleanProd.id));
+    }
+
+    async function permanentlyDeleteProductCloud(productId) {
+      mirrorAllToLocalStorage();
+      await deleteDoc(doc(db, "deleted_products", productId));
+    }
+
+    async function saveOrderToCloud(order) {
+      mirrorAllToLocalStorage();
+      await setDoc(doc(db, "orders", order.orderId), order);
+    }
+
+    async function saveSiteSettingsToCloud(configObj) {
+      mirrorAllToLocalStorage();
+      await setDoc(doc(db, "site_settings", "main"), {
+        ...configObj,
+        updatedAt: new Date().toISOString()
+      }, { merge: true });
+    }
+
+    async function saveAdminCredsToCloud(credsObj) {
+      mirrorAllToLocalStorage();
+      await setDoc(doc(db, "admin_config", "credentials"), {
+        ...credsObj,
+        updatedAt: new Date().toISOString()
+      }, { merge: true });
+    }
+
+    // Push all current local state up to Firestore collections/documents
+    async function syncAllLocalDataToFirestore(silent = false) {
+      try {
+        // 1. Upload active products
+        for (const prod of state.products) {
+          await setDoc(doc(db, "products", prod.id), {
+            ...prod,
+            updatedAt: new Date().toISOString()
+          });
+        }
+
+        // 2. Upload recently deleted products
+        for (const delProd of state.deletedProducts) {
+          await setDoc(doc(db, "deleted_products", delProd.id), {
+            ...delProd,
+            deletedAt: delProd.deletedAt || new Date().toISOString()
+          });
+        }
+
+        // 3. Upload orders
+        for (const ord of state.orders) {
+          await setDoc(doc(db, "orders", ord.orderId), ord);
+        }
+
+        // 4. Upload site_settings/main
+        await setDoc(doc(db, "site_settings", "main"), {
+          ...state.config,
+          updatedAt: new Date().toISOString()
+        }, { merge: true });
+
+        // 5. Upload admin_config/credentials
+        await setDoc(doc(db, "admin_config", "credentials"), {
+          ...state.creds,
+          updatedAt: new Date().toISOString()
+        }, { merge: true });
+
+        updateCloudConnectionUI(true);
+        if (!silent) {
+          showToast("All local products, orders & settings synced to Firestore Cloud!");
+        }
+      } catch (err) {
+        console.error("Manual cloud sync error:", err);
+        updateCloudConnectionUI(false, `Sync failed: ${err.message}`);
+        if (!silent) {
+          showToast("Cloud sync failed — check Firestore security rules or internet", "error");
+        }
+      }
+    }
+
+    // One-time auto-seeding/migration if Firestore is empty, followed by real-time onSnapshot listeners
+    async function initFirestoreCloudSync() {
+      try {
+        // 1. Check & Seed `products` collection if empty
+        const productsSnap = await getDocs(collection(db, "products"));
+        const deletedSnap = await getDocs(collection(db, "deleted_products"));
+        if (productsSnap.empty && deletedSnap.empty) {
+          const seedSource = state.products.length > 0 ? state.products : DEFAULT_PRODUCTS;
+          for (const item of seedSource) {
+            await setDoc(doc(db, "products", item.id), {
+              ...item,
+              createdAt: new Date().toISOString()
+            });
+          }
+        }
+
+        // 2. Migrate any local `deleted_products` if Firestore `deleted_products` is empty
+        if (deletedSnap.empty && state.deletedProducts.length > 0) {
+          for (const item of state.deletedProducts) {
+            await setDoc(doc(db, "deleted_products", item.id), item);
+          }
+        }
+
+        // 3. Migrate any local `orders` if Firestore `orders` is empty
+        const ordersSnap = await getDocs(collection(db, "orders"));
+        if (ordersSnap.empty && state.orders.length > 0) {
+          for (const ord of state.orders) {
+            await setDoc(doc(db, "orders", ord.orderId), ord);
+          }
+        }
+
+        // 4. Check & Seed `site_settings/main` document if missing
+        const siteDocRef = doc(db, "site_settings", "main");
+        const siteDocSnap = await getDoc(siteDocRef);
+        if (!siteDocSnap.exists()) {
+          await setDoc(siteDocRef, {
+            ...state.config,
+            updatedAt: new Date().toISOString()
+          });
+        }
+
+        // 5. Check & Seed `admin_config/credentials` document if missing
+        const credsDocRef = doc(db, "admin_config", "credentials");
+        const credsDocSnap = await getDoc(credsDocRef);
+        if (!credsDocSnap.exists()) {
+          await setDoc(credsDocRef, {
+            ...state.creds,
+            updatedAt: new Date().toISOString()
+          });
+        }
+
+        // 6. Attach Real-Time `onSnapshot` Listeners across all collections/docs
+        onSnapshot(
+          collection(db, "products"),
+          (snapshot) => {
+            const list = [];
+            snapshot.forEach((docItem) => list.push({ id: docItem.id, ...docItem.data() }));
+            // Sort newest or preserve order cleanly
+            list.sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
+            state.products = list;
+            mirrorAllToLocalStorage();
+            updateCloudConnectionUI(true);
+            renderAllUI();
+          },
+          (err) => {
+            console.warn("Firestore products listener error:", err);
+            updateCloudConnectionUI(false, `Firestore listener warning: ${err.message}`);
+          }
+        );
+
+        onSnapshot(
+          collection(db, "deleted_products"),
+          (snapshot) => {
+            const list = [];
+            snapshot.forEach((docItem) => list.push({ id: docItem.id, ...docItem.data() }));
+            list.sort((a, b) => (b.deletedAt || "").localeCompare(a.deletedAt || ""));
+            state.deletedProducts = list;
+            mirrorAllToLocalStorage();
+            renderAllUI();
+          },
+          (err) => console.warn("Firestore deleted_products listener error:", err)
+        );
+
+        onSnapshot(
+          collection(db, "orders"),
+          (snapshot) => {
+            const list = [];
+            snapshot.forEach((docItem) => list.push({ orderId: docItem.id, ...docItem.data() }));
+            list.sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
+            state.orders = list;
+            mirrorAllToLocalStorage();
+            renderAllUI();
+          },
+          (err) => console.warn("Firestore orders listener error:", err)
+        );
+
+        onSnapshot(
+          siteDocRef,
+          (docSnap) => {
+            if (docSnap.exists()) {
+              state.config = { ...DEFAULT_SITE_CONFIG, ...docSnap.data() };
+              mirrorAllToLocalStorage();
+              renderAllUI();
+            }
+          },
+          (err) => console.warn("Firestore site_settings listener error:", err)
+        );
+
+        onSnapshot(
+          credsDocRef,
+          (docSnap) => {
+            if (docSnap.exists()) {
+              state.creds = { ...DEFAULT_ADMIN_CREDS, ...docSnap.data() };
+              mirrorAllToLocalStorage();
+            }
+          },
+          (err) => console.warn("Firestore admin_config listener error:", err)
+        );
+
+        updateCloudConnectionUI(true);
+      } catch (err) {
+        console.warn("Firestore initialization fallback to localStorage:", err);
+        updateCloudConnectionUI(false, `Offline Fallback (${err.code || "Network/Rules"})`);
+      }
+    }
+
+    /* ==========================================================================
+       5. HELPER UTILITIES
+       ========================================================================== */
+    function formatPKR(amount) {
+      return "PKR " + Number(amount || 0).toLocaleString("en-PK");
+    }
+
+    function formatWhatsAppInternational(phoneRaw) {
+      const digits = String(phoneRaw || "03336942959").replace(/\D/g, "");
+      if (digits.startsWith("0")) return "92" + digits.slice(1);
+      if (digits.startsWith("92")) return digits;
+      return "92" + digits;
+    }
+
+    function buildProductWhatsAppUrl(product) {
+      const waNumber = formatWhatsAppInternational(state.config.phone);
+      const message = `Assalam-o-Alaikum Farhan School Furniture! I am interested in:\n• Product: ${product.name}\n• Price: ${formatPKR(product.price)}\nPlease share availability and delivery details.`;
+      return `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+    }
+
+    function showToast(message, type = "success") {
+      const container = document.getElementById("toastContainer");
+      const toast = document.createElement("div");
+      const iconClass = type === "success" ? "fa-circle-check text-emerald-400" : type === "error" ? "fa-circle-exclamation text-rose-400" : "fa-circle-info text-blue-400";
+      toast.className = "pointer-events-auto bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl border border-slate-700/80 flex items-center gap-3 text-sm font-medium transform transition-all duration-300 translate-y-3 opacity-0";
+      toast.innerHTML = `<i class="fa-solid ${iconClass} text-base"></i><span>${escapeHtml(message)}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.remove("translate-y-3", "opacity-0");
+      });
+
+      setTimeout(() => {
+        toast.classList.add("translate-y-2", "opacity-0");
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    function escapeHtml(str) {
+      return String(str ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function readFileAsDataURL(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    /* ==========================================================================
+       6. MULTI-PAGE SPA ROUTER & SCROLL-REVEAL OBSERVER
+       ========================================================================== */
+    let revealObserver = null;
+
+    function setupRevealObserver() {
+      if (revealObserver) revealObserver.disconnect();
+      revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+    }
+
+    function navigateTo(route) {
+      const validRoutes = ["home", "products", "about", "contact", "admin"];
+      if (!validRoutes.includes(route)) route = "home";
+
+      // Guard Admin view behind authentication
+      if (route === "admin" && !state.isAdminAuthenticated) {
+        route = "home";
+      }
+
+      document.querySelectorAll(".page-view").forEach((view) => view.classList.remove("active"));
+      const targetView = document.getElementById(`view-${route}`);
+      if (targetView) targetView.classList.add("active");
+
+      // Highlight active navbar links
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        const isMatch = link.dataset.route === route;
+        link.classList.toggle("bg-blue-50", isMatch);
+        link.classList.toggle("text-blue-700", isMatch);
+      });
+
+      // Close mobile menu if open
+      document.getElementById("mobileMenu").classList.add("hidden");
+
+      // Update URL hash cleanly (without exposing #admin unless unlocked)
+      if (route !== "admin") {
+        history.replaceState(null, "", `#${route}`);
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setTimeout(setupRevealObserver, 60);
+    }
+
+    /* ==========================================================================
+       7. RENDER SITE CONFIG (LOGO, HERO, ABOUT, CONTACT, PHONE NUMBERS)
+       ========================================================================== */
+    function renderSiteConfig() {
+      const cfg = state.config;
+      const waIntl = formatWhatsAppInternational(cfg.phone);
+
+      // Brand Title & Logo
+      document.getElementById("brandTitleText").textContent = cfg.brandName;
+      document.getElementById("footerBrandName").textContent = cfg.brandName;
+      const logoBox = document.getElementById("brandLogoContainer");
+      if (cfg.logoUrl && cfg.logoUrl.trim() !== "") {
+        logoBox.innerHTML = `<img src="${escapeHtml(cfg.logoUrl)}" onerror="this.onerror=null;this.parentElement.innerHTML='<i class=\\'fa-solid fa-graduation-cap text-lg sm:text-xl\\'></i>';" alt="${escapeHtml(cfg.brandName)}" class="w-full h-full object-cover" />`;
+      } else {
+        logoBox.innerHTML = `<i class="fa-solid fa-graduation-cap text-lg sm:text-xl"></i>`;
+      }
+
+      // Hero Banner
+      const heroImg = document.getElementById("heroBannerImg");
+      if (cfg.heroImage) heroImg.src = cfg.heroImage;
+      document.getElementById("heroHeadline").textContent = cfg.heroHeadline;
+      document.getElementById("heroSubheadline").textContent = cfg.heroSubheadline;
+
+      // About Section
+      document.getElementById("aboutPageHeading").textContent = `About ${cfg.brandName}`;
+      document.getElementById("aboutShopAddress").textContent = cfg.address;
+      const paragraphs = String(cfg.aboutCopy || "").split(/\n+/).filter(Boolean);
+      document.getElementById("aboutMainCopy").innerHTML = paragraphs
+        .map((p) => `<p>${escapeHtml(p)}</p>`)
+        .join("");
+
+      // Contact & Phone Updates Everywhere
+      document.getElementById("topBarPhoneDisplay").textContent = cfg.phone;
+      document.getElementById("topBarWaLink").href = `https://wa.me/${waIntl}`;
+      document.getElementById("heroWhatsAppBtn").href = `https://wa.me/${waIntl}?text=${encodeURIComponent("Assalam-o-Alaikum " + cfg.brandName + "! I would like to inquire about school furniture.")}`;
+      document.getElementById("contactDirectWaBtn").href = `https://wa.me/${waIntl}`;
+      document.getElementById("contactWaNumberText").textContent = cfg.phone;
+      document.getElementById("contactAddressText").textContent = cfg.address;
+      document.getElementById("contactPhoneText").textContent = cfg.phone;
+      document.getElementById("contactFormPhoneHint").textContent = cfg.phone;
+      document.getElementById("footerAddress").textContent = cfg.address;
+      document.getElementById("footerPhone").textContent = cfg.phone;
+
+      // Update EasyPaisa / JazzCash numbers in Checkout
+      document.querySelectorAll(".payment-num-display").forEach((el) => {
+        el.textContent = cfg.phone;
+      });
+      document.getElementById("walletAccountNum").textContent = cfg.phone;
+      const epRadio = document.querySelector('input[name="paymentMethod"][value^="EasyPaisa"]');
+      const jcRadio = document.querySelector('input[name="paymentMethod"][value^="JazzCash"]');
+      if (epRadio) epRadio.value = `EasyPaisa (${cfg.phone})`;
+      if (jcRadio) jcRadio.value = `JazzCash (${cfg.phone})`;
+    }
+
+    /* ==========================================================================
+       8. RENDER PRODUCT CARDS (HOME & PRODUCTS VIEWS)
+       ========================================================================== */
+    function createProductCardHTML(product) {
+      const waUrl = buildProductWhatsAppUrl(product);
+      const fallbackImg = `https://placehold.co/800x600/F1F5F9/0F172A?text=${encodeURIComponent(product.name)}`;
+
+      return `
+        <article class="product-card reveal bg-white rounded-2xl border border-slate-200/90 overflow-hidden flex flex-col shadow-xs">
+          <!-- Product Image -->
+          <div class="relative aspect-[4/3] bg-slate-100 overflow-hidden">
+            <img
+              src="${escapeHtml(product.image)}"
+              onerror="this.onerror=null;this.src='${fallbackImg}';"
+              alt="${escapeHtml(product.name)}"
+              loading="lazy"
+              class="w-full h-full object-cover"
+            />
+            <span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-slate-800 text-xs font-bold px-3 py-1 rounded-full shadow-xs border border-slate-200/70">
+              ${escapeHtml(product.category)}
+            </span>
+          </div>
+
+          <!-- Card Content -->
+          <div class="p-5 flex-grow flex flex-col">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="font-display font-bold text-lg text-slate-900 leading-snug">
+                ${escapeHtml(product.name)}
+              </h3>
+            </div>
+
+            <p class="font-display font-extrabold text-xl text-blue-700 mt-1.5">
+              ${formatPKR(product.price)}
+            </p>
+
+            <p class="text-slate-600 text-sm mt-2.5 line-clamp-3 leading-relaxed flex-grow">
+              ${escapeHtml(product.description)}
+            </p>
+
+            <!-- 3 Mandatory Purchase Options -->
+            <div class="mt-5 pt-4 border-t border-slate-100 space-y-2.5">
+              <div class="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  data-action="buy-now"
+                  data-id="${escapeHtml(product.id)}"
+                  class="inline-flex items-center justify-center gap-1.5 bg-blue-700 hover:bg-blue-800 text-white font-bold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition shadow-xs"
+                >
+                  <i class="fa-solid fa-bolt text-amber-300"></i>
+                  <span>Buy Now</span>
+                </button>
+
+                <button
+                  type="button"
+                  data-action="add-cart"
+                  data-id="${escapeHtml(product.id)}"
+                  class="inline-flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold py-2.5 px-3 rounded-xl text-xs sm:text-sm border border-slate-200/80 transition"
+                >
+                  <i class="fa-solid fa-cart-plus text-blue-700"></i>
+                  <span>Add to Cart</span>
+                </button>
+              </div>
+
+              <a
+                href="${waUrl}"
+                target="_blank"
+                rel="noopener"
+                class="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs sm:text-sm transition shadow-xs"
+              >
+                <i class="fa-brands fa-whatsapp text-base"></i>
+                <span>Chat on WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderHomeProducts() {
+      const grid = document.getElementById("homeProductsGrid");
+      if (!state.products.length) {
+        grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500">No furniture items available right now.</div>`;
+        return;
+      }
+      grid.innerHTML = state.products.map(createProductCardHTML).join("");
+    }
+
+    function renderProductsPage() {
+      // Build Category Filter Pills
+      const categories = ["All", ...new Set(state.products.map((p) => p.category).filter(Boolean))];
+      if (!categories.includes(state.activeCategory)) state.activeCategory = "All";
+
+      const filterBar = document.getElementById("categoryFilterBar");
+      filterBar.innerHTML = categories
+        .map((cat) => {
+          const isActive = cat === state.activeCategory;
+          return `
+            <button
+              type="button"
+              data-category="${escapeHtml(cat)}"
+              class="cat-pill-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition ${
+                isActive
+                  ? "bg-blue-700 text-white shadow-xs"
+                  : "bg-white text-slate-700 border border-slate-200 hover:border-blue-400 hover:text-blue-700"
+              }"
+            >
+              ${escapeHtml(cat)}
+            </button>
+          `;
+        })
+        .join("");
+
+      // Filter products by search query & category
+      const q = state.searchQuery.trim().toLowerCase();
+      const filtered = state.products.filter((p) => {
+        const matchesCat = state.activeCategory === "All" || p.category === state.activeCategory;
+        const matchesQuery =
+          !q ||
+          p.name.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q) ||
+          p.description.toLowerCase().includes(q);
+        return matchesCat && matchesQuery;
+      });
+
+      const grid = document.getElementById("productsPageGrid");
+      const emptyState = document.getElementById("emptySearchState");
+      const countLabel = document.getElementById("productsCountLabel");
+
+      countLabel.textContent = `Showing ${filtered.length} of ${state.products.length} school furniture items`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = "";
+        emptyState.classList.remove("hidden");
+      } else {
+        emptyState.classList.add("hidden");
+        grid.innerHTML = filtered.map(createProductCardHTML).join("");
+      }
+    }
+
+    /* ==========================================================================
+       9. SHOPPING CART LOGIC & DRAWER RENDERING
+       ========================================================================== */
+    function addToCart(productId) {
+      const product = state.products.find((p) => p.id === productId);
+      if (!product) return;
+
+      const existing = state.cart.find((item) => item.productId === productId);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        state.cart.push({ productId: product.id, quantity: 1 });
+      }
+
+      saveCartToLocal();
+      renderCartUI(true);
+      showToast(`Added "${product.name}" to your cart`);
+    }
+
+    function updateCartQuantity(productId, delta) {
+      const idx = state.cart.findIndex((item) => item.productId === productId);
+      if (idx === -1) return;
+
+      state.cart[idx].quantity += delta;
+      if (state.cart[idx].quantity <= 0) {
+        state.cart.splice(idx, 1);
+      }
+      saveCartToLocal();
+      renderCartUI(false);
+    }
+
+    function removeFromCart(productId) {
+      state.cart = state.cart.filter((item) => item.productId !== productId);
+      saveCartToLocal();
+      renderCartUI(false);
+    }
+
+    function getHydratedCartItems() {
+      return state.cart
+        .map((cItem) => {
+          const prod = state.products.find((p) => p.id === cItem.productId);
+          if (!prod) return null;
+          return {
+            ...prod,
+            quantity: cItem.quantity,
+            subtotal: prod.price * cItem.quantity
+          };
+        })
+        .filter(Boolean);
+    }
+
+    function renderCartUI(animateBadge = false) {
+      const items = getHydratedCartItems();
+      const totalQty = items.reduce((sum, item) => sum + item.quantity, 0);
+      const totalAmount = items.reduce((sum, item) => sum + item.subtotal, 0);
+
+      const badge = document.getElementById("cartBadge");
+      badge.textContent = totalQty;
+      if (animateBadge) {
+        badge.classList.remove("badge-bounce");
+        void badge.offsetWidth;
+        badge.classList.add("badge-bounce");
+      }
+
+      const container = document.getElementById("cartItemsContainer");
+      const footer = document.getElementById("cartDrawerFooter");
+      document.getElementById("cartTotalAmount").textContent = formatPKR(totalAmount);
+
+      if (items.length === 0) {
+        footer.classList.add("hidden");
+        container.innerHTML = `
+          <div class="text-center py-16">
+            <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto text-2xl mb-4">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-slate-900">Your cart is empty</h3>
+            <p class="text-slate-500 text-sm mt-1">Browse our school desks, chairs, and boards to add items.</p>
+          </div>
+        `;
+        return;
+      }
+
+      footer.classList.remove("hidden");
+      container.innerHTML = items
+        .map(
+          (item) => `
+          <div class="flex gap-3.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+            <img src="${escapeHtml(item.image)}" onerror="this.onerror=null;this.src='https://placehold.co/150x150/E2E8F0/0F172A?text=Furniture';" alt="${escapeHtml(item.name)}" class="w-20 h-20 rounded-lg object-cover shrink-0 bg-white border border-slate-200" />
+            <div class="flex-grow min-w-0">
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-bold text-sm text-slate-900 leading-snug truncate">${escapeHtml(item.name)}</h4>
+                <button type="button" data-cart-remove="${escapeHtml(item.id)}" aria-label="Remove item" class="text-slate-400 hover:text-rose-600 text-xs p-1">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+              <p class="text-xs font-semibold text-blue-700 mt-0.5">${formatPKR(item.price)} each</p>
+
+              <div class="flex items-center justify-between mt-3">
+                <div class="inline-flex items-center bg-white border border-slate-300 rounded-lg overflow-hidden">
+                  <button type="button" data-cart-dec="${escapeHtml(item.id)}" class="w-7 h-7 flex items-center justify-center text-slate-700 hover:bg-slate-100 font-bold text-xs">−</button>
+                  <span class="px-2.5 text-xs font-extrabold text-slate-900">${item.quantity}</span>
+                  <button type="button" data-cart-inc="${escapeHtml(item.id)}" class="w-7 h-7 flex items-center justify-center text-slate-700 hover:bg-slate-100 font-bold text-xs">+</button>
+                </div>
+                <span class="font-display font-extrabold text-sm text-slate-900">${formatPKR(item.subtotal)}</span>
+              </div>
+            </div>
+          </div>
+        `
+        )
+        .join("");
+    }
+
+    function openCartDrawer() {
+      renderCartUI(false);
+      document.getElementById("cartDrawerBackdrop").classList.add("open");
+    }
+
+    function closeCartDrawer() {
+      document.getElementById("cartDrawerBackdrop").classList.remove("open");
+    }
+
+    /* ==========================================================================
+       10. CHECKOUT FLOW ("BUY NOW" & "ORDER ALL TOGETHER") + CONFIRMATION TICK
+       ========================================================================== */
+    function openCheckoutModal(items, mode) {
+      if (!items || items.length === 0) return;
+
+      state.checkoutItems = items;
+      state.checkoutMode = mode;
+
+      // Reset modal to form view
+      document.getElementById("checkoutFormContainer").classList.remove("hidden");
+      document.getElementById("orderConfirmedContainer").classList.add("hidden");
+      document.getElementById("checkoutModeSubtitle").textContent =
+        mode === "single" ? "Direct Single-Item Checkout" : `Combined Cart Checkout (${items.length} item types)`;
+
+      const grandTotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+      document.getElementById("checkoutGrandTotal").textContent = formatPKR(grandTotal);
+
+      document.getElementById("checkoutItemsList").innerHTML = items
+        .map(
+          (i) => `
+          <div class="flex items-center justify-between text-slate-700 py-1 border-b border-slate-200/60 last:border-0">
+            <span><strong>${i.quantity}×</strong> ${escapeHtml(i.name)}</span>
+            <span class="font-bold text-slate-900">${formatPKR(i.price * i.quantity)}</span>
+          </div>
+        `
+        )
+        .join("");
+
+      closeCartDrawer();
+      document.getElementById("checkoutModalBackdrop").classList.add("open");
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById("checkoutModalBackdrop").classList.remove("open");
+    }
+
+    function handleBuyNow(productId) {
+      const product = state.products.find((p) => p.id === productId);
+      if (!product) return;
+      openCheckoutModal([{ ...product, quantity: 1 }], "single");
+    }
+
+    async function handleConfirmOrderSubmit(e) {
+      e.preventDefault();
+
+      const customerName = document.getElementById("chkCustomerName").value.trim();
+      const schoolName = document.getElementById("chkSchoolName").value.trim();
+      const primaryAddress = document.getElementById("chkPrimaryAddress").value.trim();
+      const city = document.getElementById("chkCity").value.trim();
+      const deliveryAddress = document.getElementById("chkDeliveryAddress").value.trim();
+      const schoolAddress = document.getElementById("chkSchoolAddress").value.trim();
+      const paymentRadio = document.querySelector('input[name="paymentMethod"]:checked');
+      const paymentMethod = paymentRadio ? paymentRadio.value : "COD (Cash on Delivery)";
+
+      const orderedItems = state.checkoutItems.map((item) => ({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        subtotal: item.price * item.quantity
+      }));
+
+      const totalAmount = orderedItems.reduce((sum, i) => sum + i.subtotal, 0);
+      const orderId = "FSF-" + Date.now().toString().slice(-6);
+
+      const newOrder = {
+        orderId,
+        customerName,
+        schoolName,
+        primaryAddress,
+        deliveryAddress,
+        schoolAddress,
+        city,
+        paymentMethod,
+        items: orderedItems,
+        totalAmount,
+        status: "Pending",
+        createdAt: new Date().toISOString()
+      };
+
+      state.orders.unshift(newOrder);
+      try {
+        await saveOrderToCloud(newOrder);
+      } catch (err) {
+        console.warn("Order saved locally, cloud sync pending:", err);
+      }
+
+      // Clear cart if order originated from Cart
+      if (state.checkoutMode === "cart") {
+        state.cart = [];
+        saveCartToLocal();
+        renderCartUI(false);
+      }
+
+      // Render animated checkmark confirmation view
+      document.getElementById("checkoutFormContainer").classList.add("hidden");
+      const confirmedBox = document.getElementById("orderConfirmedContainer");
+      confirmedBox.classList.remove("hidden");
+
+      // Re-trigger SVG checkmark animation cleanly
+      const svgEl = confirmedBox.querySelector(".checkmark-svg");
+      if (svgEl) {
+        const clone = svgEl.cloneNode(true);
+        svgEl.parentNode.replaceChild(clone, svgEl);
+      }
+
+      document.getElementById("orderReceiptSummary").innerHTML = `
+        <div class="flex justify-between border-b border-slate-200 pb-2">
+          <span class="text-slate-500">Order Reference:</span>
+          <span class="font-mono font-extrabold text-slate-900">${escapeHtml(orderId)}</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-500">Buyer / School:</span>
+          <span class="font-bold text-slate-900 text-right">${escapeHtml(customerName)} (${escapeHtml(schoolName)})</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-500">City & Delivery:</span>
+          <span class="font-medium text-slate-800 text-right">${escapeHtml(deliveryAddress)}, ${escapeHtml(city)}</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-500">Payment Method:</span>
+          <span class="font-bold text-blue-700 text-right">${escapeHtml(paymentMethod)}</span>
+        </div>
+        <div class="pt-2 border-t border-slate-200 flex justify-between text-base">
+          <span class="font-bold text-slate-900">Total Payable:</span>
+          <span class="font-display font-extrabold text-emerald-700">${formatPKR(totalAmount)}</span>
+        </div>
+      `;
+
+      const waIntl = formatWhatsAppInternational(state.config.phone);
+      const receiptMsg = `Assalam-o-Alaikum Farhan School Furniture! I have placed Order #${orderId}.\n• Name: ${customerName}\n• School: ${schoolName}\n• City: ${city}\n• Payment: ${paymentMethod}\n• Total: ${formatPKR(totalAmount)}`;
+      document.getElementById("receiptWhatsAppBtn").href = `https://wa.me/${waIntl}?text=${encodeURIComponent(receiptMsg)}`;
+
+      document.getElementById("checkoutOrderForm").reset();
+      document.getElementById("walletPaymentBox").classList.add("hidden");
+      renderAdminPanel();
+    }
+
+    /* ==========================================================================
+       11. STEALTH TRIPLE-CLICK COPYRIGHT TRIGGER & ADMIN PANEL
+       ========================================================================== */
+    function initStealthCopyrightTrigger() {
+      const triggerEl = document.getElementById("copyrightTrigger");
+      let clickTimestamps = [];
+
+      triggerEl.addEventListener("click", () => {
+        const now = Date.now();
+        // Keep clicks within 1.5 seconds window
+        clickTimestamps = clickTimestamps.filter((t) => now - t < 1500);
+        clickTimestamps.push(now);
+
+        if (clickTimestamps.length >= 3) {
+          clickTimestamps = [];
+          if (state.isAdminAuthenticated) {
+            navigateTo("admin");
+          } else {
+            document.getElementById("adminLoginError").classList.add("hidden");
+            document.getElementById("adminLoginForm").reset();
+            document.getElementById("adminLoginBackdrop").classList.add("open");
+            setTimeout(() => document.getElementById("adminUserInput").focus(), 100);
+          }
+        }
+      });
+    }
+
+    function renderAdminPanel() {
+      // Update counts
+      document.getElementById("deletedCountBadge").textContent = state.deletedProducts.length;
+      document.getElementById("ordersCountBadge").textContent = state.orders.length;
+      document.getElementById("adminActiveProdCount").textContent = state.products.length;
+
+      // 1. Active Products List
+      const activeList = document.getElementById("adminProductsList");
+      activeList.innerHTML = state.products
+        .map(
+          (p) => `
+          <div class="bg-white border border-slate-200 rounded-2xl p-4 flex flex-col justify-between shadow-xs">
+            <div>
+              <div class="flex items-center gap-3">
+                <img src="${escapeHtml(p.image)}" onerror="this.onerror=null;this.src='https://placehold.co/120x120/E2E8F0/0F172A?text=Item';" alt="${escapeHtml(p.name)}" class="w-16 h-16 rounded-xl object-cover bg-slate-100 border border-slate-200 shrink-0" />
+                <div class="min-w-0">
+                  <span class="text-[11px] font-bold uppercase text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full">${escapeHtml(p.category)}</span>
+                  <h4 class="font-bold text-slate-900 text-sm mt-1 truncate">${escapeHtml(p.name)}</h4>
+                  <p class="font-extrabold text-sm text-slate-700">${formatPKR(p.price)}</p>
+                </div>
+              </div>
+              <p class="text-xs text-slate-500 mt-3 line-clamp-2">${escapeHtml(p.description)}</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-2">
+              <button type="button" data-admin-edit="${escapeHtml(p.id)}" class="flex-1 bg-slate-100 hover:bg-blue-50 text-slate-800 hover:text-blue-700 font-bold py-2 px-3 rounded-xl text-xs transition">
+                <i class="fa-solid fa-pen mr-1"></i>Edit
+              </button>
+              <button type="button" data-admin-delete="${escapeHtml(p.id)}" class="flex-1 bg-rose-50 hover:bg-rose-600 text-rose-700 hover:text-white font-bold py-2 px-3 rounded-xl text-xs transition">
+                <i class="fa-solid fa-trash mr-1"></i>Delete
+              </button>
+            </div>
+          </div>
+        `
+        )
+        .join("");
+
+      // 2. Recently Deleted Products
+      const deletedList = document.getElementById("adminDeletedList");
+      if (state.deletedProducts.length === 0) {
+        deletedList.innerHTML = `<div class="col-span-full text-center py-12 bg-slate-50 rounded-2xl border border-slate-200 text-slate-500 text-sm">No recently deleted products.</div>`;
+      } else {
+        deletedList.innerHTML = state.deletedProducts
+          .map(
+            (p) => `
+            <div class="bg-white border border-amber-200 rounded-2xl p-4 flex flex-col justify-between shadow-xs">
+              <div>
+                <div class="flex items-center gap-3">
+                  <img src="${escapeHtml(p.image)}" onerror="this.onerror=null;this.src='https://placehold.co/120x120/FEF3C7/92400E?text=Deleted';" alt="${escapeHtml(p.name)}" class="w-16 h-16 rounded-xl object-cover opacity-75 shrink-0" />
+                  <div class="min-w-0">
+                    <span class="text-[11px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full">Deleted</span>
+                    <h4 class="font-bold text-slate-900 text-sm mt-1 truncate">${escapeHtml(p.name)}</h4>
+                    <p class="font-extrabold text-sm text-slate-700">${formatPKR(p.price)}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-2">
+                <button type="button" data-admin-restore="${escapeHtml(p.id)}" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-3 rounded-xl text-xs transition">
+                  <i class="fa-solid fa-rotate-left mr-1"></i>Restore
+                </button>
+                <button type="button" data-admin-purge="${escapeHtml(p.id)}" class="bg-slate-100 hover:bg-rose-600 text-slate-700 hover:text-white font-bold py-2 px-3 rounded-xl text-xs transition" title="Delete Forever">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div>
+          `
+          )
+          .join("");
+      }
+
+      // 3. Orders Inbox
+      const ordersList = document.getElementById("adminOrdersList");
+      if (state.orders.length === 0) {
+        ordersList.innerHTML = `<div class="text-center py-14 bg-slate-50 rounded-2xl border border-slate-200 text-slate-500 text-sm">No customer orders received yet.</div>`;
+      } else {
+        ordersList.innerHTML = state.orders
+          .map((ord) => {
+            const dateStr = new Date(ord.createdAt).toLocaleString("en-PK", {
+              dateStyle: "medium",
+              timeStyle: "short"
+            });
+            const statusOptions = ["Pending", "Confirmed", "Dispatched", "Delivered"]
+              .map((st) => `<option value="${st}" ${ord.status === st ? "selected" : ""}>${st}</option>`)
+              .join("");
+
+            return `
+              <div class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-xs space-y-4">
+                <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100">
+                  <div>
+                    <span class="font-mono text-xs font-extrabold bg-slate-900 text-white px-2.5 py-1 rounded-lg">${escapeHtml(ord.orderId)}</span>
+                    <span class="text-xs text-slate-500 ml-2">${escapeHtml(dateStr)}</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <label class="text-xs font-bold text-slate-500">Status:</label>
+                    <select data-order-status="${escapeHtml(ord.orderId)}" class="text-xs font-bold bg-blue-50 text-blue-800 border border-blue-200 rounded-lg px-2.5 py-1.5 focus:outline-none">
+                      ${statusOptions}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div class="space-y-1">
+                    <p><span class="text-slate-500">Customer Name:</span> <strong class="text-slate-900">${escapeHtml(ord.customerName)}</strong></p>
+                    <p><span class="text-slate-500">School Name:</span> <strong class="text-slate-900">${escapeHtml(ord.schoolName)}</strong></p>
+                    <p><span class="text-slate-500">City:</span> <strong class="text-slate-900">${escapeHtml(ord.city)}</strong></p>
+                    <p><span class="text-slate-500">Payment Method:</span> <span class="font-bold text-emerald-700">${escapeHtml(ord.paymentMethod)}</span></p>
+                  </div>
+                  <div class="space-y-1 bg-slate-50 p-3 rounded-xl border border-slate-200/70 text-xs">
+                    <p><span class="font-bold text-slate-700">Primary Address:</span> ${escapeHtml(ord.primaryAddress)}</p>
+                    <p><span class="font-bold text-slate-700">Delivery Address:</span> ${escapeHtml(ord.deliveryAddress)}</p>
+                    <p><span class="font-bold text-slate-700">School Address:</span> ${escapeHtml(ord.schoolAddress)}</p>
+                  </div>
+                </div>
+
+                <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-200/70">
+                  <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Ordered Furniture Items</p>
+                  <div class="space-y-1 text-sm">
+                    ${ord.items
+                      .map(
+                        (item) => `
+                        <div class="flex justify-between">
+                          <span><strong>${item.quantity}×</strong> ${escapeHtml(item.name)}</span>
+                          <span class="font-semibold">${formatPKR(item.subtotal)}</span>
+                        </div>
+                      `
+                      )
+                      .join("")}
+                  </div>
+                  <div class="mt-2.5 pt-2 border-t border-slate-200 flex justify-between font-display font-extrabold text-base text-slate-900">
+                    <span>Order Total</span>
+                    <span class="text-blue-700">${formatPKR(ord.totalAmount)}</span>
+                  </div>
+                </div>
+              </div>
+            `;
+          })
+          .join("");
+      }
+
+      // 4. Populate Site Content Editor Inputs
+      document.getElementById("cfgBrandName").value = state.config.brandName;
+      document.getElementById("cfgLogoUrl").value = state.config.logoUrl || "";
+      document.getElementById("cfgHeroImgUrl").value = state.config.heroImage;
+      document.getElementById("cfgHeroHeadline").value = state.config.heroHeadline;
+      document.getElementById("cfgHeroSubheadline").value = state.config.heroSubheadline;
+      document.getElementById("cfgPhone").value = state.config.phone;
+      document.getElementById("cfgAddress").value = state.config.address;
+      document.getElementById("cfgAboutCopy").value = state.config.aboutCopy;
+    }
+
+    /* ==========================================================================
+       12. MASTER RENDER & EVENT LISTENERS
+       ========================================================================== */
+    function renderAllUI() {
+      renderSiteConfig();
+      renderHomeProducts();
+      renderProductsPage();
+      renderCartUI(false);
+      if (state.isAdminAuthenticated) {
+        renderAdminPanel();
+      }
+      setupRevealObserver();
+    }
+
+    function bindAllEvents() {
+      // SPA Navigation Links
+      document.addEventListener("click", (e) => {
+        const routeLink = e.target.closest(".nav-route");
+        if (routeLink) {
+          e.preventDefault();
+          navigateTo(routeLink.dataset.route);
+          return;
+        }
+
+        // Product Card Actions (Buy Now & Add to Cart)
+        const actionBtn = e.target.closest("[data-action]");
+        if (actionBtn) {
+          const id = actionBtn.dataset.id;
+          if (actionBtn.dataset.action === "buy-now") handleBuyNow(id);
+          if (actionBtn.dataset.action === "add-cart") addToCart(id);
+          return;
+        }
+
+        // Category Filter Pill Click
+        const catBtn = e.target.closest(".cat-pill-btn");
+        if (catBtn) {
+          state.activeCategory = catBtn.dataset.category;
+          renderProductsPage();
+          setupRevealObserver();
+          return;
+        }
+
+        // Cart Drawer Item Controls
+        const incBtn = e.target.closest("[data-cart-inc]");
+        if (incBtn) return updateCartQuantity(incBtn.dataset.cartInc, 1);
+
+        const decBtn = e.target.closest("[data-cart-dec]");
+        if (decBtn) return updateCartQuantity(decBtn.dataset.cartDec, -1);
+
+        const remBtn = e.target.closest("[data-cart-remove]");
+        if (remBtn) return removeFromCart(remBtn.dataset.cartRemove);
+
+        // Admin Product Edit / Delete / Restore / Purge
+        const editBtn = e.target.closest("[data-admin-edit]");
+        if (editBtn) {
+          const prod = state.products.find((p) => p.id === editBtn.dataset.adminEdit);
+          if (!prod) return;
+          document.getElementById("editProductId").value = prod.id;
+          document.getElementById("prodNameInput").value = prod.name;
+          document.getElementById("prodPriceInput").value = prod.price;
+          document.getElementById("prodCategoryInput").value = prod.category;
+          document.getElementById("prodImageUrlInput").value = prod.image;
+          document.getElementById("prodDescInput").value = prod.description;
+          document.getElementById("productFormTitle").textContent = `Editing: ${prod.name}`;
+          document.getElementById("saveProductBtn").innerHTML = `<i class="fa-solid fa-check"></i><span>Update Product</span>`;
+          document.getElementById("cancelEditProductBtn").classList.remove("hidden");
+          document.getElementById("adminProductForm").scrollIntoView({ behavior: "smooth" });
+          return;
+        }
+
+        const delBtn = e.target.closest("[data-admin-delete]");
+        if (delBtn) {
+          const id = delBtn.dataset.adminDelete;
+          const idx = state.products.findIndex((p) => p.id === id);
+          if (idx !== -1) {
+            const [removed] = state.products.splice(idx, 1);
+            removed.deletedAt = new Date().toISOString();
+            state.deletedProducts.unshift(removed);
+            renderAllUI();
+            moveProductToDeletedCloud(removed).catch((err) => console.warn("Cloud delete sync warning:", err));
+            showToast(`Moved "${removed.name}" to Recently Deleted`);
+          }
+          return;
+        }
+
+        const restoreBtn = e.target.closest("[data-admin-restore]");
+        if (restoreBtn) {
+          const id = restoreBtn.dataset.adminRestore;
+          const idx = state.deletedProducts.findIndex((p) => p.id === id);
+          if (idx !== -1) {
+            const [restored] = state.deletedProducts.splice(idx, 1);
+            delete restored.deletedAt;
+            state.products.unshift(restored);
+            renderAllUI();
+            restoreProductFromDeletedCloud(restored).catch((err) => console.warn("Cloud restore sync warning:", err));
+            showToast(`Restored "${restored.name}" to active products`);
+          }
+          return;
+        }
+
+        const purgeBtn = e.target.closest("[data-admin-purge]");
+        if (purgeBtn) {
+          const id = purgeBtn.dataset.adminPurge;
+          state.deletedProducts = state.deletedProducts.filter((p) => p.id !== id);
+          renderAdminPanel();
+          permanentlyDeleteProductCloud(id).catch((err) => console.warn("Cloud permanent delete warning:", err));
+          showToast("Product permanently removed");
+          return;
+        }
+      });
+
+      // Manual Sync Local Data to Cloud Button in Admin Header
+      document.getElementById("syncLocalToCloudBtn").addEventListener("click", async () => {
+        await syncAllLocalDataToFirestore(false);
+      });
+
+      // Mobile Menu Toggle
+      document.getElementById("mobileMenuBtn").addEventListener("click", () => {
+        document.getElementById("mobileMenu").classList.toggle("hidden");
+      });
+
+      // Cart Drawer Open / Close / Order All Together
+      document.getElementById("openCartBtn").addEventListener("click", openCartDrawer);
+      document.getElementById("closeCartBtn").addEventListener("click", closeCartDrawer);
+      document.getElementById("cartDrawerBackdrop").addEventListener("click", (e) => {
+        if (e.target.id === "cartDrawerBackdrop") closeCartDrawer();
+      });
+      document.getElementById("orderAllTogetherBtn").addEventListener("click", () => {
+        const items = getHydratedCartItems();
+        if (items.length > 0) openCheckoutModal(items, "cart");
+      });
+
+      // Checkout Modal Controls
+      document.getElementById("closeCheckoutBtn").addEventListener("click", closeCheckoutModal);
+      document.getElementById("doneOrderBtn").addEventListener("click", closeCheckoutModal);
+      document.getElementById("checkoutModalBackdrop").addEventListener("click", (e) => {
+        if (e.target.id === "checkoutModalBackdrop") closeCheckoutModal();
+      });
+
+      // Same Delivery & School Address Checkbox
+      const sameAddrChk = document.getElementById("sameAddressCheckbox");
+      const delAddrInput = document.getElementById("chkDeliveryAddress");
+      const schAddrInput = document.getElementById("chkSchoolAddress");
+
+      sameAddrChk.addEventListener("change", () => {
+        if (sameAddrChk.checked) {
+          schAddrInput.value = delAddrInput.value;
+        }
+      });
+      delAddrInput.addEventListener("input", () => {
+        if (sameAddrChk.checked) {
+          schAddrInput.value = delAddrInput.value;
+        }
+      });
+
+      // Payment Method Radio Toggle (COD / EasyPaisa / JazzCash)
+      document.querySelectorAll('input[name="paymentMethod"]').forEach((radio) => {
+        radio.addEventListener("change", () => {
+          document.querySelectorAll(".payment-option-card").forEach((card) => {
+            card.classList.remove("border-blue-600", "bg-blue-50/40");
+            card.classList.add("border-slate-200");
+          });
+          const selectedCard = radio.closest(".payment-option-card");
+          if (selectedCard) {
+            selectedCard.classList.remove("border-slate-200");
+            selectedCard.classList.add("border-blue-600", "bg-blue-50/40");
+          }
+
+          const walletBox = document.getElementById("walletPaymentBox");
+          if (radio.value.startsWith("EasyPaisa")) {
+            walletBox.classList.remove("hidden");
+            document.getElementById("walletProviderLabel").textContent = "EasyPaisa";
+          } else if (radio.value.startsWith("JazzCash")) {
+            walletBox.classList.remove("hidden");
+            document.getElementById("walletProviderLabel").textContent = "JazzCash";
+          } else {
+            walletBox.classList.add("hidden");
+          }
+        });
+      });
+
+      // Copy Payment Number using document.execCommand('copy') for iFrame reliability
+      document.getElementById("copyWalletNumBtn").addEventListener("click", () => {
+        const tempInput = document.createElement("input");
+        tempInput.value = state.config.phone;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        showToast(`Copied ${state.config.phone} to clipboard`);
+      });
+
+      // Submit Checkout Order
+      document.getElementById("checkoutOrderForm").addEventListener("submit", handleConfirmOrderSubmit);
+
+      // Products Page Real-Time Search
+      const searchInput = document.getElementById("productSearchInput");
+      const clearSearchBtn = document.getElementById("clearSearchBtn");
+      searchInput.addEventListener("input", () => {
+        state.searchQuery = searchInput.value;
+        clearSearchBtn.classList.toggle("hidden", !state.searchQuery);
+        renderProductsPage();
+        setupRevealObserver();
+      });
+      clearSearchBtn.addEventListener("click", () => {
+        searchInput.value = "";
+        state.searchQuery = "";
+        clearSearchBtn.classList.add("hidden");
+        renderProductsPage();
+        setupRevealObserver();
+      });
+      document.getElementById("resetSearchFiltersBtn").addEventListener("click", () => {
+        searchInput.value = "";
+        state.searchQuery = "";
+        state.activeCategory = "All";
+        clearSearchBtn.classList.add("hidden");
+        renderProductsPage();
+        setupRevealObserver();
+      });
+
+      // Contact Page WhatsApp Inquiry Form
+      document.getElementById("contactInquiryForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("inqName").value.trim();
+        const contact = document.getElementById("inqContact").value.trim();
+        const school = document.getElementById("inqSchool").value.trim();
+        const msg = document.getElementById("inqMessage").value.trim();
+
+        const waIntl = formatWhatsAppInternational(state.config.phone);
+        const formattedText = `Assalam-o-Alaikum ${state.config.brandName}!\n\n*New Website Inquiry*\n• Name: ${name}\n• Contact: ${contact}\n• School Name: ${school}\n• Question: ${msg}`;
+        window.open(`https://wa.me/${waIntl}?text=${encodeURIComponent(formattedText)}`, "_blank", "noopener");
+      });
+
+      // Admin Login Modal
+      document.getElementById("closeAdminLoginBtn").addEventListener("click", () => {
+        document.getElementById("adminLoginBackdrop").classList.remove("open");
+      });
+      document.getElementById("adminLoginBackdrop").addEventListener("click", (e) => {
+        if (e.target.id === "adminLoginBackdrop") {
+          document.getElementById("adminLoginBackdrop").classList.remove("open");
+        }
+      });
+
+      document.getElementById("adminLoginForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const u = document.getElementById("adminUserInput").value.trim();
+        const p = document.getElementById("adminPassInput").value;
+        if (u === state.creds.username && p === state.creds.password) {
+          state.isAdminAuthenticated = true;
+          document.getElementById("adminLoginBackdrop").classList.remove("open");
+          renderAdminPanel();
+          navigateTo("admin");
+          showToast("Admin access unlocked");
+        } else {
+          document.getElementById("adminLoginError").classList.remove("hidden");
+        }
+      });
+
+      // Admin Exit & Logout
+      document.getElementById("adminExitBtn").addEventListener("click", () => navigateTo("home"));
+      document.getElementById("adminLogoutBtn").addEventListener("click", () => {
+        state.isAdminAuthenticated = false;
+        navigateTo("home");
+        showToast("Admin session locked", "info");
+      });
+
+      // Admin Tabs Switching
+      document.querySelectorAll(".admin-tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".admin-tab-btn").forEach((b) => {
+            b.classList.remove("active", "bg-blue-700", "text-white", "font-bold");
+            b.classList.add("text-slate-600", "font-semibold");
+          });
+          btn.classList.add("active", "bg-blue-700", "text-white", "font-bold");
+          btn.classList.remove("text-slate-600", "font-semibold");
+
+          const targetTab = btn.dataset.adminTab;
+          document.querySelectorAll(".admin-tab-pane").forEach((pane) => pane.classList.add("hidden"));
+          document.getElementById(`admin-tab-${targetTab}`).classList.remove("hidden");
+        });
+      });
+
+      // Admin Add / Edit Product Form
+      document.getElementById("cancelEditProductBtn").addEventListener("click", resetAdminProductForm);
+      document.getElementById("adminProductForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const editId = document.getElementById("editProductId").value;
+        const name = document.getElementById("prodNameInput").value.trim();
+        const price = Number(document.getElementById("prodPriceInput").value);
+        const category = document.getElementById("prodCategoryInput").value.trim();
+        let image = document.getElementById("prodImageUrlInput").value.trim();
+        const fileInput = document.getElementById("prodImageFileInput");
+        const description = document.getElementById("prodDescInput").value.trim();
+
+        if (fileInput.files && fileInput.files[0]) {
+          image = await readFileAsDataURL(fileInput.files[0]);
+        }
+        if (!image) {
+          image = `https://placehold.co/800x600/F1F5F9/0F172A?text=${encodeURIComponent(name)}`;
+        }
+
+        if (editId) {
+          const idx = state.products.findIndex((p) => p.id === editId);
+          if (idx !== -1) {
+            const updatedProd = { ...state.products[idx], name, price, category, image, description };
+            state.products[idx] = updatedProd;
+            await saveProductToCloud(updatedProd).catch((err) => console.warn("Cloud product update warning:", err));
+          }
+          showToast(`Updated "${name}" in Firestore`);
+        } else {
+          const newProd = {
+            id: "prod-" + Date.now(),
+            name,
+            price,
+            category,
+            image,
+            description,
+            createdAt: new Date().toISOString()
+          };
+          state.products.unshift(newProd);
+          await saveProductToCloud(newProd).catch((err) => console.warn("Cloud product add warning:", err));
+          showToast(`Added "${name}" to Firestore`);
+        }
+
+        resetAdminProductForm();
+        renderAllUI();
+      });
+
+      // Admin Order Status Updater
+      document.addEventListener("change", async (e) => {
+        const statusSelect = e.target.closest("[data-order-status]");
+        if (!statusSelect) return;
+        const ordId = statusSelect.dataset.orderStatus;
+        const order = state.orders.find((o) => o.orderId === ordId);
+        if (order) {
+          order.status = statusSelect.value;
+          await saveOrderToCloud(order).catch((err) => console.warn("Cloud order status warning:", err));
+          showToast(`Order ${ordId} marked as ${order.status}`);
+        }
+      });
+
+      // Admin Site Content Editor Form
+      document.getElementById("adminContentForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        let logoUrl = document.getElementById("cfgLogoUrl").value.trim();
+        const logoFile = document.getElementById("cfgLogoFile");
+        if (logoFile.files && logoFile.files[0]) {
+          logoUrl = await readFileAsDataURL(logoFile.files[0]);
+        }
+
+        let heroImage = document.getElementById("cfgHeroImgUrl").value.trim();
+        const heroFile = document.getElementById("cfgHeroImgFile");
+        if (heroFile.files && heroFile.files[0]) {
+          heroImage = await readFileAsDataURL(heroFile.files[0]);
+        }
+
+        state.config = {
+          brandName: document.getElementById("cfgBrandName").value.trim(),
+          logoUrl,
+          heroImage,
+          heroHeadline: document.getElementById("cfgHeroHeadline").value.trim(),
+          heroSubheadline: document.getElementById("cfgHeroSubheadline").value.trim(),
+          phone: document.getElementById("cfgPhone").value.trim(),
+          address: document.getElementById("cfgAddress").value.trim(),
+          aboutCopy: document.getElementById("cfgAboutCopy").value.trim()
+        };
+
+        await saveSiteSettingsToCloud(state.config).catch((err) => console.warn("Cloud site settings warning:", err));
+        renderAllUI();
+        showToast("Website branding & content saved to Firestore");
+      });
+
+      // Admin Credentials Changer Form (Requires Current Username + Old Password + New Password)
+      document.getElementById("adminCredentialsForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const curUser = document.getElementById("credCurrentUser").value.trim();
+        const oldPass = document.getElementById("credOldPass").value;
+        const newUser = document.getElementById("credNewUser").value.trim();
+        const newPass = document.getElementById("credNewPass").value;
+        const feedback = document.getElementById("credFeedbackMsg");
+
+        if (curUser !== state.creds.username || oldPass !== state.creds.password) {
+          feedback.textContent = "Verification failed: Current username or old password is incorrect.";
+          feedback.className = "text-sm font-semibold p-3 rounded-xl bg-rose-50 text-rose-700 border border-rose-200";
+          feedback.classList.remove("hidden");
+          return;
+        }
+
+        state.creds = { username: newUser, password: newPass };
+        await saveAdminCredsToCloud(state.creds).catch((err) => console.warn("Cloud credentials warning:", err));
+
+        feedback.textContent = "Admin username and password updated in Firestore successfully!";
+        feedback.className = "text-sm font-semibold p-3 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200";
+        feedback.classList.remove("hidden");
+        document.getElementById("adminCredentialsForm").reset();
+        showToast("Admin credentials updated in Firestore");
+      });
+    }
+
+    function resetAdminProductForm() {
+      document.getElementById("adminProductForm").reset();
+      document.getElementById("editProductId").value = "";
+      document.getElementById("productFormTitle").textContent = "Add New School Furniture Product";
+      document.getElementById("saveProductBtn").innerHTML = `<i class="fa-solid fa-plus"></i><span>Save Product</span>`;
+      document.getElementById("cancelEditProductBtn").classList.add("hidden");
+    }
+
+    /* ==========================================================================
+       13. BOOTSTRAP APPLICATION ON LOAD
+       ========================================================================== */
+    window.addEventListener("DOMContentLoaded", async () => {
+      loadFromLocalStorage();
+      bindAllEvents();
+      initStealthCopyrightTrigger();
+      renderAllUI();
+
+      // Handle initial hash route
+      const initialHash = window.location.hash.replace("#", "");
+      if (["home", "products", "about", "contact"].includes(initialHash)) {
+        navigateTo(initialHash);
+      } else {
+        navigateTo("home");
+      }
+
+      // Initialize Google Cloud Firestore Real-Time Sync
+      await initFirestoreCloudSync();
+    });
+  </script>
+</body>
+</html>
